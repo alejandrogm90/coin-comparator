@@ -127,3 +127,13 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# By my side
+*_test.*
+*_test
+*/*.log
+*.log
+lanzar.sh
+config.json
+mysite
+output.png

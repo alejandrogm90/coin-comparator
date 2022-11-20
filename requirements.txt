@@ -1,0 +1,4 @@
+matplotlib==3.6.1
+pyfiglet==0.8.post1
+pymongo==4.3.3
+requests==2.25.1
