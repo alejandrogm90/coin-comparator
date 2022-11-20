@@ -120,6 +120,7 @@ _For more examples, please refer to the [Documentation](https://github.com/aleja
 <!-- ROADMAP -->
 ## Roadmap
 
+- [ ] Add microservices
 - [ ] Add WEB UI
 - [ ] Add other languages
     - [ ] Spanish
@@ -167,9 +168,9 @@ Project Link: [https://github.com/alejandrogm90/coin-comparator](https://github.
 <!-- MARKDOWN LINKS & IMAGES -->
 [product-screenshot]: images/screenshot.png
 
-[bash-shields]: https://img.shields.io/badge/bash-000000?style=for-the-badge&logo=gnubash&logoColor=white
+[bash-shield]: https://img.shields.io/badge/bash-000000?style=for-the-badge&logo=gnubash&logoColor=white
 [bash-url]: https://www.gnu.org/software/bash/
-[python-shields]: https://img.shields.io/badge/python-000000?style=for-the-badge&logo=python&logoColor=white
+[python-shield]: https://img.shields.io/badge/python-000000?style=for-the-badge&logo=python&logoColor=white
 [python-url]: https://www.python.org/
 
 [contributors-shield]: https://img.shields.io/github/contributors/alejandrogm90/coin-comparator.svg?style=for-the-badge

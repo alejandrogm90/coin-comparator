@@ -2,7 +2,7 @@
 
 # VARIABLES AND FUNCTIONS
 DIR_HOME=$(cd `dirname $0` && pwd)
-source "ssh_examples/scripts/commonFunctions.sh"
+source "commons/commonFunctions.sh"
 SCRIPT_NAME=`getJustStriptName $0`
 export LOG_FILE=${DIR_HOME}"/"${SCRIPT_NAME}"_"`date +%F`".log"
 SCRIPT_1="./coinlayer/get_day.py"
