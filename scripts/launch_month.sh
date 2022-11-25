@@ -7,8 +7,6 @@ SCRIPT_NAME=`getJustStriptName $0`
 export LOG_FILE=${DIR_HOME}"/"${SCRIPT_NAME}"_"`date +%F`".log"
 SCRIPT_1="./coinlayer/get_day_sqlitle.py"
 
-echo "" > $LOG_FILE
-
 declare -A script_info
 export script_info=(
 	[name]="${SCRIPT_NAME}" 
@@ -19,25 +17,23 @@ export script_info=(
 
 showScriptInfo
 
-if [ $# -ne 2 ] ; then 
-    echo " $0 [YEAR] [MONTH]"
-    showError 1 "$(date -u) [ERROR]: Number of incorrect parameters.Must be 2"
+echo "" > $LOG_FILE
+
+if [ $# -ne 2 ] ; then
+    showError 1 "Number of incorrect parameters. $0 [YEAR] [MONTH]"
 else  
     if [ `isValidDate $1 $2` -ne 1 ] ; then    
-        showError 2 "Is not a valid date"
+        showError 2 "Is not a valid date YYYY-MM-DD"
     else
-        respuesta=0
         for day in `getAllDatesOfOneMonth $1 $2` ; do 
-            echo "Saving day: "$day
+            showInfo "Saving day: "$day
             $SCRIPT_1 $day
             respuesta=$?
             if [ $respuesta -eq 0 ] ; then
-                echo "`date +%F' '%T` [MSG]: Completed $SCRIPT_1 $day" >> $LOG_FILE
+                showInfo "Completed $SCRIPT_1 $day"
             else
-                echo "`date +%F' '%T` [ERROR]: $SCRIPT_1 $day" >> $LOG_FILE
-                break
+                showWarn "$SCRIPT_1 $day"
             fi
         done
-        if [ $respuesta -eq 0 ] ; then $echo $day" DONE ...." ; fi
     fi
 fi 

@@ -3,10 +3,10 @@
 import logging
 import logging.config
 import json
-import sys
-sys.path.append("..") 
-import commons.commonFunctions as cfs
 import matplotlib.pyplot as plt
+import sys
+sys.path.append("../")
+import commons.commonFunctions as cfs
 
 # GLOBALS
 logging.config.fileConfig('logging.conf')

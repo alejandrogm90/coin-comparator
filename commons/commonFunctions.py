@@ -50,14 +50,12 @@ def isDate(cadena):
 
     if mes > 12 or mes < 1:
         return False
-
-    if anno < mes or anno < dia:
+    elif anno < mes or anno < dia:
         return False
-
-    if dia > monthrange(anno, mes)[1] or dia < 1:
+    elif dia > monthrange(anno, mes)[1] or dia < 1:
         return False
-
-    return True
+    else:
+        return True
 
 
 def create_sqlitle3_connection(db_file):

@@ -39,7 +39,7 @@ if __name__ == '__main__':
         "rates": data["rates"]
     }
 
-    conn = cfs.create_sqlitle3_connection('SQLitle_test')
+    conn = cfs.create_sqlitle3_connection(CONFIG["SQLITLE_PATH"])
     cur = conn.cursor()
     for element in data["rates"]:
         print(element)

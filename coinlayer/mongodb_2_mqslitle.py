@@ -20,10 +20,10 @@ if __name__ == '__main__':
         exit(2)
 
     SELECTED_DATE = str(sys.argv[1])
-    HOST_URL = config["HOST_URL"]
-    ACCESS_KEY = config["ACCESS_KEY"]
+    HOST_URL = CONFIG["HOST_URL"]
+    ACCESS_KEY = CONFIG["ACCESS_KEY"]
     URL1 = HOST_URL+"/api/list?access_key="+ACCESS_KEY
-    URL_MONGODB = config["URL_MONGODB"]
+    URL_MONGODB = CONFIG["URL_MONGODB"]
 
     myClient = pymongo.MongoClient(URL_MONGODB)
     myDataBase = myClient["coinlayer"]
@@ -31,7 +31,7 @@ if __name__ == '__main__':
 
     MY_QUERY_TEXT = { "_id": SELECTED_DATE }
 
-    conn = cfs.create_sqlitle3_connection('SQLitle_test')
+    conn = cfs.create_sqlitle3_connection(CONFIG["SQLITLE_PATH"])
     cur = conn.cursor()
     for element in myCollection.find(MY_QUERY_TEXT):
         for element2 in element["rates"]:

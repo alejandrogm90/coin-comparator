@@ -70,10 +70,11 @@ About The Project
 
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+Frameworks and libraries used to bootstrap the project:
 
 * [![Bash][bash-shield]][bash-url]
 * [![Python][python-shield]][python-url]
+* [![Django][django-shield]][django-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -87,14 +88,16 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+You need install first:
+
+* _Bash_
+* _Python3_
+
 ```sh
-Prerequisites
+pip install -r requirements.txt
 ```
 
 ### Installation
-
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
 1. Get a free API Key at [https://github.com/alejandrogm90/coin-comparator](https://github.com/alejandrogm90/coin-comparator)
 2. Clone the repo
@@ -121,7 +124,7 @@ _For more examples, please refer to the [Documentation](https://github.com/aleja
 ## Roadmap
 
 - [ ] Add microservices
-- [ ] Add WEB UI
+- [X] Add WEB UI
 - [ ] Add other languages
     - [ ] Spanish
     - [ ] French
@@ -172,6 +175,8 @@ Project Link: [https://github.com/alejandrogm90/coin-comparator](https://github.
 [bash-url]: https://www.gnu.org/software/bash/
 [python-shield]: https://img.shields.io/badge/python-000000?style=for-the-badge&logo=python&logoColor=white
 [python-url]: https://www.python.org/
+[django-shield]: https://img.shields.io/badge/django-000000?style=for-the-badge&logo=django&logoColor=white
+[django-url]: https://www.djangoproject.com/
 
 [contributors-shield]: https://img.shields.io/github/contributors/alejandrogm90/coin-comparator.svg?style=for-the-badge
 [forks-shield]: https://img.shields.io/github/forks/alejandrogm90/coin-comparator.svg?style=for-the-badge

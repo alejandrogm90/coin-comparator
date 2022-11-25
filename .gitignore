@@ -133,7 +133,8 @@ dmypy.json
 *_test
 */*.log
 *.log
-lanzar.sh
+scripts/lanzar.sh
 config.json
+secret_key.txt
 mysite
 output.png

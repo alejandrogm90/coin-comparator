@@ -17,7 +17,7 @@ export script_info=(
 
 showScriptInfo
 
-#echo "" > $LOG_FILE
+echo "" > $LOG_FILE
 
 CASH=100
 COINS=100
@@ -27,7 +27,7 @@ for cDate in `getAllDatesOfOneMonth 2022 3` ; do
 	#reaction=`reactive_agent/agent_2.py $cDate BTC $CASH $COINS 0.02`
 	#reaction=`reactive_agent/agent_3.py $cDate BTC $CASH $COINS 0.02`
 	reaction=`reactive_agent/agent_4.py $cDate BTC $CASH $COINS 0.02`
-	echo "$reaction"
 	CASH=`echo $reaction | cut -d'|' -f3`
 	COINS=`echo $reaction | cut -d'|' -f4`
+	showInfo "$reaction"
 done
