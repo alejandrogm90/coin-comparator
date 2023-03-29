@@ -129,12 +129,13 @@ dmypy.json
 .pyre/
 
 # By my side
+/.idea
 *_test.*
 *_test
 */*.log
 *.log
 scripts/lanzar.sh
-config.json
+config/config-example.json
 secret_key.txt
 mysite
 output.png

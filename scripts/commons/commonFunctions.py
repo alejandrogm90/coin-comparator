@@ -18,9 +18,17 @@
 
 import os
 import sqlite3
-import pyfiglet
 from calendar import monthrange
-from time import gmtime, strftime  
+from time import gmtime, strftime
+
+import pyfiglet
+
+
+def getProjetPath():
+    """ Return the project absolute path
+    :return: path as string
+    """
+    return os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 
 
 def getTime():
@@ -30,6 +38,10 @@ def getTime():
     return strftime("%Y-%m-%d %H:%M:%S", gmtime())
 
 
+def getHeadLine(level):
+    return "[" + getTime() + "][" + level + "]"
+
+
 def isDate(cadena):
     """ Check is the text recived is a rigth date
     :param cadena: datatime text (YYYY-MM-DD)
@@ -37,7 +49,7 @@ def isDate(cadena):
     """
     if len(cadena) != 10:
         return False
-        
+
     if cadena[4] != "-" or cadena[7] != "-":
         return False
 
@@ -77,18 +89,18 @@ def printBanner(character, textList):
     """ Print a simple banner
     :param text: text to print
     """
-    line_size=0
+    line_size = 0
     for line in textList:
         if line_size < len(line):
             line_size = len(line)
-    
+
     print(character * (line_size + 4))
     for line in textList:
         if len(line) == line_size:
-            print(character+" "+line+" "+character)
+            print(character + " " + line + " " + character)
         else:
             spaces = " " * (line_size - len(line) + 1)
-            print(character+" "+line+spaces+character)
+            print(character + " " + line + spaces + character)
     print(character * (line_size + 4))
 
 
@@ -104,17 +116,17 @@ def printFileEncoded(nombre):
     """ print file with encoded text
     :param nombre: file's URI
     """
-    f1 = open(nombre,'r')
+    f1 = open(nombre, 'r')
     linea = f1.readline()
     while (len(linea) > 0):
         nueva = ""
-        for pos in range(0,len(linea)-1):
-            nueva = nueva + str(chr(ord(linea[pos])+1))
+        for pos in range(0, len(linea) - 1):
+            nueva = nueva + str(chr(ord(linea[pos]) + 1))
         print(nueva)
         linea = f1.readline()
 
 
-def getFiletName(location,extension=False):
+def getFiletName(location, extension=False):
     """ return file name not URI location
     :param location: URI of scritp
     :return: file name
@@ -122,24 +134,53 @@ def getFiletName(location,extension=False):
     SPLITER_1 = '/'
     SPLITER_2 = '.'
     name1 = os.path.split(location)[1]
-    name2=""
+    name2 = ""
     if extension:
         name2 = name1
     else:
-        parts=len(name1.split(SPLITER_2))
+        parts = len(name1.split(SPLITER_2))
         if parts <= 2:
             name2 = name1.split(SPLITER_2)[0]
         else:
-            for part2 in range(0,(parts-1)):
+            for part2 in range(0, (parts - 1)):
                 name2 += name1.split(SPLITER_2)[part2]
 
     return name2
 
 
-def errorBreak(logger,num,msg):
+def printLogFile(outputFile, msg):
+    printLogFile_file = open(outputFile, 'a')
+    printLogFile_file.write(msg + os.linesep)
+    printLogFile_file.close()
+
+
+def infoMsg(logger, msg, outputFile=""):
+    """ Show a menssage text
+    :param msg: info menssage
+    :param outputFile: output file
+    """
+    logger.info(": " + msg)
+    if outputFile != "":
+        printLogFile(outputFile, getHeadLine("INFO") + ": " + msg)
+
+
+def warnMsg(logger, msg, outputFile=""):
+    """ Show a menssage text
+    :param msg: warning menssage
+    :param outputFile: output file
+    """
+    logger.warning(": " + msg)
+    if outputFile != "":
+        printLogFile(outputFile, getHeadLine("WARNING") + ": " + msg)
+
+
+def errorMsg(logger, num, msg, outputFile=""):
     """ Show a menssage text and exits with output number
     :param num: output number
-    :param msg: output menssage
+    :param msg: error menssage
+    :param outputFile: output file
     """
-    logger.critical(msg)
+    logger.error("[" + str(num) + "]:" + msg)
+    if outputFile != "":
+        printLogFile(outputFile, getHeadLine("ERROR") + "[" + str(num) + "]:" + msg)
     exit(num)

@@ -1,10 +1,50 @@
+<!-- MARKDOWN LINKS & IMAGES -->
+
+[product-screenshot]: images/screenshot.png
+
+[bash-shield]: https://img.shields.io/badge/bash-000000?style=for-the-badge&logo=gnubash&logoColor=white
+
+[bash-url]: https://www.gnu.org/software/bash/
+
+[python-shield]: https://img.shields.io/badge/python-000000?style=for-the-badge&logo=python&logoColor=white
+
+[python-url]: https://www.python.org/
+
+[django-shield]: https://img.shields.io/badge/django-000000?style=for-the-badge&logo=django&logoColor=white
+
+[django-url]: https://www.djangoproject.com/
+
+[contributors-shield]: https://img.shields.io/github/contributors/alejandrogm90/coin-comparator.svg?style=for-the-badge
+
+[forks-shield]: https://img.shields.io/github/forks/alejandrogm90/coin-comparator.svg?style=for-the-badge
+
+[stars-shield]: https://img.shields.io/github/stars/alejandrogm90/coin-comparator.svg?style=for-the-badge
+
+[issues-shield]: https://img.shields.io/github/issues/alejandrogm90/coin-comparator.svg?style=for-the-badge
+
+[license-shield]: https://img.shields.io/github/license/alejandrogm90/coin-comparator.svg?style=for-the-badge
+
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+
+[contributors-url]: https://github.com/alejandrogm90/coin-comparator/graphs/contributors
+
+[forks-url]: https://github.com/alejandrogm90/coin-comparator/network/members
+
+[stars-url]: https://github.com/alejandrogm90/coin-comparator/stargazers
+
+[issues-url]: https://github.com/alejandrogm90/coin-comparator/issues
+
+[license-url]: https://github.com/alejandrogm90/coin-comparator/blob/master/LICENSE.txt
+
+[linkedin-url]: https://www.linkedin.com/in/alejandro-g-762869129/
+
+
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
-
 
 <br />
 <div align="center">
@@ -14,7 +54,7 @@
   </a>
   -->
 
-  <h3 align="center">Coin comparator</h3>
+<h3 align="center">Coin comparator</h3>
 
   <p align="center">
     A simple coin comparator:
@@ -29,8 +69,6 @@
     <a href="https://github.com/alejandrogm90/coin-comparator/issues">Request Feature</a>
   </p>
 </div>
-
-
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -59,14 +97,13 @@
 
 
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
 [![Product Name Screen Shot][product-screenshot]](https://github.com/alejandrogm90/coin-comparator)
 About The Project
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 ### Built With
 
@@ -81,6 +118,7 @@ Frameworks and libraries used to bootstrap the project:
 
 
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
 This is an example of how you may give instructions on setting up your project locally.
@@ -99,7 +137,8 @@ pip install -r requirements.txt
 
 ### Installation
 
-1. Get a free API Key at [https://github.com/alejandrogm90/coin-comparator](https://github.com/alejandrogm90/coin-comparator)
+1. Get a free API Key
+   at [https://github.com/alejandrogm90/coin-comparator](https://github.com/alejandrogm90/coin-comparator)
 2. Clone the repo
    ```sh
    git clone https://github.com/alejandrogm90/coin-comparator.git
@@ -110,6 +149,7 @@ pip install -r requirements.txt
 
 
 <!-- USAGE EXAMPLES -->
+
 ## Usage
 
 Usage...
@@ -121,6 +161,7 @@ _For more examples, please refer to the [Documentation](https://github.com/aleja
 
 
 <!-- ROADMAP -->
+
 ## Roadmap
 
 - [ ] Add microservices
@@ -134,9 +175,11 @@ _For more examples, please refer to the [Documentation](https://github.com/aleja
 
 
 <!-- CONTRIBUTING -->
+
 ## Contributing
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also
+simply open an issue with the tag "enhancement".
 Don't forget to give the project a star! Thanks again!
 
 1. Fork the Project
@@ -150,6 +193,7 @@ Don't forget to give the project a star! Thanks again!
 
 
 <!-- LICENSE -->
+
 ## License
 
 Distributed under the License. See `LICENSE.txt` for more information.
@@ -159,6 +203,7 @@ Distributed under the License. See `LICENSE.txt` for more information.
 
 
 <!-- CONTACT -->
+
 ## Contact
 
 Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
@@ -166,28 +211,3 @@ Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.c
 Project Link: [https://github.com/alejandrogm90/coin-comparator](https://github.com/alejandrogm90/coin-comparator)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-[product-screenshot]: images/screenshot.png
-
-[bash-shield]: https://img.shields.io/badge/bash-000000?style=for-the-badge&logo=gnubash&logoColor=white
-[bash-url]: https://www.gnu.org/software/bash/
-[python-shield]: https://img.shields.io/badge/python-000000?style=for-the-badge&logo=python&logoColor=white
-[python-url]: https://www.python.org/
-[django-shield]: https://img.shields.io/badge/django-000000?style=for-the-badge&logo=django&logoColor=white
-[django-url]: https://www.djangoproject.com/
-
-[contributors-shield]: https://img.shields.io/github/contributors/alejandrogm90/coin-comparator.svg?style=for-the-badge
-[forks-shield]: https://img.shields.io/github/forks/alejandrogm90/coin-comparator.svg?style=for-the-badge
-[stars-shield]: https://img.shields.io/github/stars/alejandrogm90/coin-comparator.svg?style=for-the-badge
-[issues-shield]: https://img.shields.io/github/issues/alejandrogm90/coin-comparator.svg?style=for-the-badge
-[license-shield]: https://img.shields.io/github/license/alejandrogm90/coin-comparator.svg?style=for-the-badge
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-
-[contributors-url]: https://github.com/alejandrogm90/coin-comparator/graphs/contributors
-[forks-url]: https://github.com/alejandrogm90/coin-comparator/network/members
-[stars-url]: https://github.com/alejandrogm90/coin-comparator/stargazers
-[issues-url]: https://github.com/alejandrogm90/coin-comparator/issues
-[license-url]: https://github.com/alejandrogm90/coin-comparator/blob/master/LICENSE.txt
-[linkedin-url]: https://www.linkedin.com/in/alejandro-g-762869129/

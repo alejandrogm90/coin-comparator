@@ -1,14 +1,20 @@
 #!/usr/bin/env python3
 
-import sqlite3
 import json
+import sqlite3
 import sys
-sys.path.append("..") 
-import commons.commonFunctions as cfs
+import logging.config
 
-CONFIG = json.load(open('config.json'))
+import commonFunctions as cfs
 
-class Bank1:
+PROJECT_PATH = cfs.getProjetPath()
+logging.config.fileConfig(PROJECT_PATH + '/config/logging.properties')
+LOGGER = logging.getLogger('testLogger')
+LOG_FILE = PROJECT_PATH + '/log/' + cfs.getFiletName(sys.argv[0]) + ".log"
+CONFIG = json.load(open(PROJECT_PATH + '/config/config_test.json'))
+
+
+class CoinWallet:
     def __init__(self, cDate, coinName, cash, coins, price):
         self.cDate = cDate
         self.coinName = coinName
@@ -56,11 +62,11 @@ class Bank1:
     def getSellTaxeAmount(self, amount):
         return amount * self.CONFIG_TEST["SELL_TAXE"]
 
-    def getBuyGanances(self,amount):
+    def getBuyGanances(self, amount):
         localAmount = (amount / self.price)
         return localAmount - self.getBuyTaxeAmount(localAmount)
 
-    def getSellGanances(self,amount):
+    def getSellGanances(self, amount):
         localAmount = (amount * self.price)
         return localAmount - self.getSellTaxeAmount(localAmount)
 
@@ -74,7 +80,7 @@ class Bank1:
         self.coins = 0
         self.action = "SELL"
 
-    def buyCoins(self,amount):
+    def buyCoins(self, amount):
         if self.cash > 0 and amount <= self.cash:
             self.coins = self.getBuyGanances(amount)
             self.cash = amount % self.price
@@ -82,7 +88,7 @@ class Bank1:
         else:
             self.action = "ERROR-BUY"
 
-    def sellCoins(self,amount):
+    def sellCoins(self, amount):
         if self.coins > 0 and amount <= self.coins:
             self.cash = self.getSellGanances(amount)
             self.coins = self.coins - amount
@@ -91,8 +97,8 @@ class Bank1:
             self.action = "ERROR-SELL"
 
     def __str__(self) -> str:
-        return self.cDate+"|"+self.action+"|{0:.8f}".format(self.cash)+"|{0:.8f}".format(self.coins)
+        return self.cDate + "|" + self.action + "|{0:.8f}".format(self.cash) + "|{0:.8f}".format(self.coins)
 
 
 if __name__ == '__main__':
-    print("class Bank")
+    print("class CoinWallet")
