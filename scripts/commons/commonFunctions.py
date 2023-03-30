@@ -38,6 +38,13 @@ def getTime():
     return strftime("%Y-%m-%d %H:%M:%S", gmtime())
 
 
+def getDate():
+    """ Return a complete date as YYYY-MM-dd
+    :return: all date as string
+    """
+    return strftime("%Y-%m-%d", gmtime())
+
+
 def getHeadLine(level):
     return "[" + getTime() + "][" + level + "]"
 
@@ -148,7 +155,17 @@ def getFiletName(location, extension=False):
     return name2
 
 
+def getFileLog(location):
+    """ return file name not URI location
+    :param location: URI of scritp
+    :return: file log name
+    """
+    return getFiletName(location) + "_" + getDate() + ".log"
+
+
 def printLogFile(outputFile, msg):
+    """ Print log file
+    """
     printLogFile_file = open(outputFile, 'a')
     printLogFile_file.write(msg + os.linesep)
     printLogFile_file.close()
@@ -180,7 +197,7 @@ def errorMsg(logger, num, msg, outputFile=""):
     :param msg: error menssage
     :param outputFile: output file
     """
-    logger.error("[" + str(num) + "]:" + msg)
+    logger.error("[" + str(num) + "]: " + msg)
     if outputFile != "":
-        printLogFile(outputFile, getHeadLine("ERROR") + "[" + str(num) + "]:" + msg)
+        printLogFile(outputFile, getHeadLine("ERROR") + "[" + str(num) + "]: " + msg)
     exit(num)

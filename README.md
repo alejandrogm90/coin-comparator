@@ -1,44 +1,3 @@
-<!-- MARKDOWN LINKS & IMAGES -->
-
-[product-screenshot]: images/screenshot.png
-
-[bash-shield]: https://img.shields.io/badge/bash-000000?style=for-the-badge&logo=gnubash&logoColor=white
-
-[bash-url]: https://www.gnu.org/software/bash/
-
-[python-shield]: https://img.shields.io/badge/python-000000?style=for-the-badge&logo=python&logoColor=white
-
-[python-url]: https://www.python.org/
-
-[django-shield]: https://img.shields.io/badge/django-000000?style=for-the-badge&logo=django&logoColor=white
-
-[django-url]: https://www.djangoproject.com/
-
-[contributors-shield]: https://img.shields.io/github/contributors/alejandrogm90/coin-comparator.svg?style=for-the-badge
-
-[forks-shield]: https://img.shields.io/github/forks/alejandrogm90/coin-comparator.svg?style=for-the-badge
-
-[stars-shield]: https://img.shields.io/github/stars/alejandrogm90/coin-comparator.svg?style=for-the-badge
-
-[issues-shield]: https://img.shields.io/github/issues/alejandrogm90/coin-comparator.svg?style=for-the-badge
-
-[license-shield]: https://img.shields.io/github/license/alejandrogm90/coin-comparator.svg?style=for-the-badge
-
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-
-[contributors-url]: https://github.com/alejandrogm90/coin-comparator/graphs/contributors
-
-[forks-url]: https://github.com/alejandrogm90/coin-comparator/network/members
-
-[stars-url]: https://github.com/alejandrogm90/coin-comparator/stargazers
-
-[issues-url]: https://github.com/alejandrogm90/coin-comparator/issues
-
-[license-url]: https://github.com/alejandrogm90/coin-comparator/blob/master/LICENSE.txt
-
-[linkedin-url]: https://www.linkedin.com/in/alejandro-g-762869129/
-
-
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -46,64 +5,11 @@
 [![License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
-<br />
-<div align="center">
-  <!--  
-  <a href="https://github.com/alejandrogm90/coin-comparator">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
-  -->
-
-<h3 align="center">Coin comparator</h3>
-
-  <p align="center">
-    A simple coin comparator:
-    <br />
-    <a href="https://github.com/alejandrogm90/coin-comparator"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/alejandrogm90/coin-comparator">View Demo</a>
-    ·
-    <a href="https://github.com/alejandrogm90/coin-comparator/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/alejandrogm90/coin-comparator/issues">Request Feature</a>
-  </p>
-</div>
-
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ol>
-</details>
-
-
-<!-- ABOUT THE PROJECT -->
-
 ## About The Project
 
 [![Product Name Screen Shot][product-screenshot]](https://github.com/alejandrogm90/coin-comparator)
-About The Project
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+About The Project
 
 ### Built With
 
@@ -112,12 +18,6 @@ Frameworks and libraries used to bootstrap the project:
 * [![Bash][bash-shield]][bash-url]
 * [![Python][python-shield]][python-url]
 * [![Django][django-shield]][django-url]
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- GETTING STARTED -->
 
 ## Getting Started
 
@@ -140,15 +40,10 @@ pip install -r requirements.txt
 1. Get a free API Key
    at [https://github.com/alejandrogm90/coin-comparator](https://github.com/alejandrogm90/coin-comparator)
 2. Clone the repo
-   ```sh
-   git clone https://github.com/alejandrogm90/coin-comparator.git
-   ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- USAGE EXAMPLES -->
+```sh
+git clone https://github.com/alejandrogm90/coin-comparator.git
+```
 
 ## Usage
 
@@ -156,25 +51,14 @@ Usage...
 
 _For more examples, please refer to the [Documentation](https://github.com/alejandrogm90/coin-comparator)_
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ROADMAP -->
-
 ## Roadmap
 
-- [ ] Add microservices
-- [X] Add WEB UI
+- [X] Add basic microservices
+- [X] Add basic WEB UI
 - [ ] Add other languages
     - [ ] Spanish
     - [ ] French
     - [ ] Chinese
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-<!-- CONTRIBUTING -->
 
 ## Contributing
 
@@ -188,26 +72,52 @@ Don't forget to give the project a star! Thanks again!
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- LICENSE -->
-
 ## License
 
 Distributed under the License. See `LICENSE.txt` for more information.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- CONTACT -->
-
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Alejandro Gómez - [@alejandrogm90](https://github.com/alejandrogm90)
 
 Project Link: [https://github.com/alejandrogm90/coin-comparator](https://github.com/alejandrogm90/coin-comparator)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<!-- pip freeze > requirements.txt -->
+
+[product-screenshot]: config/logo.png
+
+[bash-shield]: https://img.shields.io/badge/bash-000000?style=for-the-badge&logo=gnubash&logoColor=white
+
+[python-shield]: https://img.shields.io/badge/python-000000?style=for-the-badge&logo=python&logoColor=white
+
+[django-shield]: https://img.shields.io/badge/django-000000?style=for-the-badge&logo=django&logoColor=white
+
+[contributors-shield]: https://img.shields.io/github/contributors/alejandrogm90/coin-comparator.svg?style=for-the-badge
+
+[forks-shield]: https://img.shields.io/github/forks/alejandrogm90/coin-comparator.svg?style=for-the-badge
+
+[stars-shield]: https://img.shields.io/github/stars/alejandrogm90/coin-comparator.svg?style=for-the-badge
+
+[issues-shield]: https://img.shields.io/github/issues/alejandrogm90/coin-comparator.svg?style=for-the-badge
+
+[license-shield]: https://img.shields.io/github/license/alejandrogm90/coin-comparator.svg?style=for-the-badge
+
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+
+[bash-url]: https://www.gnu.org/software/bash/
+
+[python-url]: https://www.python.org/
+
+[django-url]: https://www.djangoproject.com/
+
+[contributors-url]: https://github.com/alejandrogm90/coin-comparator/graphs/contributors
+
+[forks-url]: https://github.com/alejandrogm90/coin-comparator/network/members
+
+[stars-url]: https://github.com/alejandrogm90/coin-comparator/stargazers
+
+[issues-url]: https://github.com/alejandrogm90/coin-comparator/issues
+
+[license-url]: https://github.com/alejandrogm90/coin-comparator/blob/master/LICENSE.txt
+
+[linkedin-url]: https://www.linkedin.com/in/alejandro-g-762869129/

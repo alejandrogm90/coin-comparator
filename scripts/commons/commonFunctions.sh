@@ -3,21 +3,24 @@
 # GLOBAL VARIABLES
 export SEPARATOR_1="###############################################################################################"
 
+function getDate {
+    echo "`date +%F' '%T`"
+}
+
 # LINE HEAD
 function lineHead {
-    echo "`date +%F'_'%T`[$1]: "
+    echo "[`getDate`][$1]"
 }
 
 # SHOW INFO
 function showMsg {
     tipeLine=$1
     shift 1
-    headLine=`lineHead $tipeLine`
+    headLine="`lineHead $tipeLine`: "
     echo "$headLine $*"
     if [ "${LOG_FILE}" != "" ] ; then 
         echo "$headLine $*" >> "${LOG_FILE}"    
     fi
-    exit $numError
 }
 
 # SHOW INFO
@@ -34,9 +37,10 @@ function showWarn {
 function showError {
     numError=${1}
     shift 1
-    echo "[`date +%F'_'%T`][ERROR](${numError}): $*"
+    headLine="`lineHead ERROR`[${numError}]: $*"
+    echo "$headLine"
     if [ "${LOG_FILE}" != "" ] ; then 
-        echo "[`date +%F'_'%T`][ERROR](${numError}): $*" >> "${LOG_FILE}"    
+        echo "$headLine" >> "${LOG_FILE}"
     fi
     exit $numError
 } 
@@ -48,34 +52,19 @@ function showScriptInfo {
     echo "# Location        : ${script_info[location]}"
     echo "# Description     : ${script_info[description]}"
     echo "# Autor           : ${script_info[Autor]}"
-    echo "# Execution_Date  : `date +%Y%m%d%H%M%S`"
+    echo "# Execution_Date  : `getDate`"
     echo "# Calling         : ${script_info[calling]}"
     echo "$SEPARATOR_1"
 }
 
-# TEXT WITH FORMAT ACCORDING TO THE FIRST PARAMETER 
-function textWithFormat {
-    if [ ${1} -eq 1 ] ; then
-        shift 1
-        echo "$*"
-    else
-        shift 1
-        echo "" 
-        echo ""
-        echo "$*"
-        echo ""
-        echo ""
-    fi
-} 
-
 # RETURN THE NAME OF THE SCRIPT 
-function getStriptName {
+function getScriptName {
     echo "${*##*/}"
 }
 
 # RETURN THE NAME OF THE SCRIPT WITHOUT EXTENSION 
 function getJustStriptName {
-    name=`getStriptName $*`
+    name=`getScriptName $*`
     echo "${name%.*}"
 }
 
@@ -98,9 +87,9 @@ function minor10 {
 # RETURN 1 IF ALL IS RIGTH ABOUT DATE SEND
 function isValidDate {
     if [ ! $# -ne 2 ] && [ ! $1 -lt 1 ] &&[ ! $2 -lt 1 ] && [ ! $2 -gt 12 ] ; then
-        return 1
+        echo 1
     fi
-    return 0
+    echo 0
 }
 
 # RETURN STRING FORMAT YYYY-MM-DD ( USES YEAR AND MONTH AS PARAMETERS )

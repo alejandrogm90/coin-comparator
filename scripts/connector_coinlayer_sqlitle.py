@@ -3,6 +3,7 @@
 import json
 import sqlite3
 import sys
+
 import requests
 
 import commons.commonFunctions as cfs
@@ -31,8 +32,8 @@ if __name__ == '__main__':
     # rdata = f1.json()
     # f1.close()
 
-    finalData = {"_id": SELECTED_DATE, "version": "1", "timestamp": data["timestamp"], "target": data["target"],
-        "rates": data["rates"]}
+    finalData = {"_id":SELECTED_DATE, "version":"1", "timestamp":data["timestamp"], "target":data["target"],
+        "rates":data["rates"]}
 
     conn = cfs.create_sqlitle3_connection(CONFIG["SQLITLE_PATH"])
     cur = conn.cursor()

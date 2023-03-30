@@ -14,21 +14,18 @@ import commons.commonFunctions as cfs
 PROJECT_PATH = cfs.getProjetPath()
 logging.config.fileConfig(PROJECT_PATH + '/config/logging.properties')
 LOGGER = logging.getLogger('testLogger')
-LOG_FILE = PROJECT_PATH + '/log/' + cfs.getFiletName(sys.argv[0]) + ".log"
+LOG_FILE = PROJECT_PATH + '/log/' + cfs.getFileLog(sys.argv[0])
 CONFIG = json.load(open(PROJECT_PATH + '/config/config_test.json'))
 
 
 # FUNCTIONS
 def coinExist(cur, sdate, name):
-    sql = " SELECT count(name) FROM coinlayer_historical WHERE name = '" + name + "' "
-    sql = sql + " AND date_part = '" + sdate + "' "
-
+    sql = " SELECT count(name) FROM coinlayer_historical WHERE name = '" + name + "' AND date_part = '" + sdate + "' ;"
     try:
         cur.execute(sql)
         conn.commit()
     except sqlite3.Error as e:
-        print(e)
-
+        cfs.errorMsg(LOGGER, 3, str(e), LOG_FILE)
     if cur.fetchone()[0] > 0:
         return True
     else:
@@ -36,8 +33,7 @@ def coinExist(cur, sdate, name):
 
 
 def createImage(cur, sdate, coinList):
-    sql = " SELECT name,value FROM coinlayer_historical WHERE date_part = '" + sdate + "' "
-    sql += " AND name IN ("
+    sql = " SELECT name,value FROM coinlayer_historical WHERE date_part = '" + sdate + "' AND name IN ("
     cont1 = True
     for coin in coinList:
         if cont1:
@@ -71,7 +67,6 @@ def createImage(cur, sdate, coinList):
 
 
 if __name__ == '__main__':
-
     if len(sys.argv) < 3:
         cfs.errorMsg(LOGGER, 1, "Erroneous parameter number.Needs [DATE] [COIN]", LOG_FILE)
 
@@ -85,8 +80,6 @@ if __name__ == '__main__':
     else:
         conn = cfs.create_sqlitle3_connection(SQLITLE_LOCATION)
         cur = conn.cursor()
-
-        # Add Elements
         coinList = list()
         for elemento in range(2, len(sys.argv)):
             if coinExist(cur, SELECTED_DATE, sys.argv[elemento]):

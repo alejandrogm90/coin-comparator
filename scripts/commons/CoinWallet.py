@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
 import json
+import logging.config
 import sqlite3
 import sys
-import logging.config
 
 import commonFunctions as cfs
 

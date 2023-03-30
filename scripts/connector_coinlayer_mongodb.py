@@ -2,6 +2,7 @@
 
 import json
 import sys
+
 import pymongo
 import requests
 
@@ -25,14 +26,14 @@ if __name__ == '__main__':
     response = requests.request("GET", URL1, headers=headers, data=payload)
     data = response.json()
 
-    finalData = {"_id": SELECTED_DATE, "version": "1", "timestamp": data["timestamp"], "target": data["target"],
-        "rates": data["rates"]}
+    finalData = {"_id":SELECTED_DATE, "version":"1", "timestamp":data["timestamp"], "target":data["target"],
+        "rates":data["rates"]}
 
     myClient = pymongo.MongoClient(URL_MONGODB)
     myDataBase = myClient["coinlayer"]
     myCollection = myDataBase["historical"]
 
-    MY_QUERY_TEXT = {"_id": SELECTED_DATE}
+    MY_QUERY_TEXT = {"_id":SELECTED_DATE}
     if myCollection.count_documents(MY_QUERY_TEXT) > 0:
         x = myCollection.replace_one(MY_QUERY_TEXT, finalData)
     else:
