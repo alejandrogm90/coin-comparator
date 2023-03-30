@@ -3,6 +3,7 @@
 # GLOBAL VARIABLES
 export SEPARATOR_1="###############################################################################################"
 
+# GET DATE
 function getDate {
     echo "`date +%F' '%T`"
 }
