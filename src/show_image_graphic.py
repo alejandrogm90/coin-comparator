@@ -3,6 +3,7 @@
 import json
 import logging.config
 import os
+import sqlite3
 import sys
 
 import matplotlib.pyplot as plt
@@ -59,21 +60,29 @@ def createImage(cur, sdate, coinList):
     plt.xlabel("Rate Name")
     plt.ylabel("Current Value")
     f = plt.figure()
-    N_SIZE = 20
-    f.set_figwidth(N_SIZE)
-    f.set_figheight(N_SIZE)
+    n_size = 20
+    f.set_figwidth(n_size)
+    f.set_figheight(n_size)
     plt.plot(l1, l2)
     plt.savefig(PNG_OUTPUT_LOCATION)  # plt.show()
 
 
 if __name__ == '__main__':
-    if len(sys.argv) < 3:
-        cfs.errorMsg(LOGGER, 1, "Erroneous parameter number.Needs [DATE] [COIN]", LOG_FILE)
+    info = {
+        "name": str(cfs.getFiletName(sys.argv[0], True)),
+        "location": sys.argv[0],
+        "description": "A simple script to print graphics",
+        "Autor": "Alejandro Gómez",
+        "calling": sys.argv[0] + " output.png 2023-05-07 BTC ABC USD"
+    }
+    cfs.showScriptInfo(info)
 
-    SELECTED_DATE = str(sys.argv[1])
-    SELECTED_COIN = str(sys.argv[2])
+    if len(sys.argv) < 4:
+        cfs.errorMsg(LOGGER, 1, "Erroneous parameter number.Needs [OUTPUT_FILE] [DATE] [COIN_ARRAY]", LOG_FILE)
+
+    PNG_OUTPUT_LOCATION = str(sys.argv[1])
+    SELECTED_DATE = str(sys.argv[2])
     SQLITLE_LOCATION = CONFIG["SQLITLE_LOCATION"]
-    PNG_OUTPUT_LOCATION = CONFIG["PNG_OUTPUT_LOCATION"]
 
     if not os.path.exists(SQLITLE_LOCATION):
         cfs.errorMsg(LOGGER, 2, "Error sqlite3 database do not exists", LOG_FILE)
@@ -81,7 +90,7 @@ if __name__ == '__main__':
         conn = cfs.create_sqlitle3_connection(SQLITLE_LOCATION)
         cur = conn.cursor()
         coinList = list()
-        for elemento in range(2, len(sys.argv)):
+        for elemento in range(3, len(sys.argv)):
             if coinExist(cur, SELECTED_DATE, sys.argv[elemento]):
                 coinList.append(sys.argv[elemento])
             else:

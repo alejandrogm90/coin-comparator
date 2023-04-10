@@ -5,13 +5,14 @@ import logging.config
 import sqlite3
 import sys
 
-import commonFunctions as cfs
+import src.commons.commonFunctions as cfs
 
 PROJECT_PATH = cfs.getProjetPath()
 logging.config.fileConfig(PROJECT_PATH + '/config/logging.properties')
 LOGGER = logging.getLogger('testLogger')
 LOG_FILE = PROJECT_PATH + '/log/' + cfs.getFiletName(sys.argv[0]) + ".log"
 CONFIG = json.load(open(PROJECT_PATH + '/config/config_test.json'))
+CONFIG_TEST = json.load(open(PROJECT_PATH + '/config/config_agen_test.json'))
 
 
 class CoinWallet:
@@ -20,9 +21,9 @@ class CoinWallet:
         self.coinName = coinName
         self.cash = cash
         self.coins = coins
-        self.action = "NONE"
         self.price = price
-        self.CONFIG_TEST = json.load(open('config-agent_test.json'))
+        self.action = "NONE"
+        self.CONFIG_TEST = CONFIG_TEST
 
     @staticmethod
     def getValues(sentence):

@@ -1,20 +1,4 @@
 #!/usr/bin/env python3
-#
-#
-#       Copyright 2022 Alejandro Gomez
-#
-#       This program is free software: you can redistribute it and/or modify
-#       it under the terms of the GNU General Public License as published by
-#       the Free Software Foundation, either version 3 of the License, or
-#       (at your option) any later version.
-#
-#       This program is distributed in the hope that it will be useful,
-#       but WITHOUT ANY WARRANTY; without even the implied warranty of
-#       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#       GNU General Public License for more details.
-#
-#       You should have received a copy of the GNU General Public License
-#       along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
 import sqlite3
@@ -22,6 +6,8 @@ from calendar import monthrange
 from time import gmtime, strftime
 
 import pyfiglet
+
+SEPARATOR_1 = "###############################################################################################"
 
 
 def getProjetPath():
@@ -138,19 +124,18 @@ def getFiletName(location, extension=False):
     :param location: URI of scritp
     :return: file name
     """
-    SPLITER_1 = '/'
-    SPLITER_2 = '.'
+    spliter_point = '.'
     name1 = os.path.split(location)[1]
     name2 = ""
     if extension:
         name2 = name1
     else:
-        parts = len(name1.split(SPLITER_2))
+        parts = len(name1.split(spliter_point))
         if parts <= 2:
-            name2 = name1.split(SPLITER_2)[0]
+            name2 = name1.split(spliter_point)[0]
         else:
             for part2 in range(0, (parts - 1)):
-                name2 += name1.split(SPLITER_2)[part2]
+                name2 += name1.split(spliter_point)[part2]
 
     return name2
 
@@ -166,9 +151,12 @@ def getFileLog(location):
 def printLogFile(outputFile, msg):
     """ Print log file
     """
-    printLogFile_file = open(outputFile, 'a')
-    printLogFile_file.write(msg + os.linesep)
-    printLogFile_file.close()
+    try:
+        printLogFile_file = open(outputFile, 'a')
+        printLogFile_file.write(msg + os.linesep)
+        printLogFile_file.close()
+    except:
+        print("Error writing in file: " + str(outputFile))
 
 
 def infoMsg(logger, msg, outputFile=""):
@@ -201,3 +189,14 @@ def errorMsg(logger, num, msg, outputFile=""):
     if outputFile != "":
         printLogFile(outputFile, getHeadLine("ERROR") + "[" + str(num) + "]: " + msg)
     exit(num)
+
+
+def showScriptInfo(info):
+    print(SEPARATOR_1)
+    print("# Name            : " + info["name"])
+    print("# Location        : " + info["location"])
+    print("# Description     : " + info["description"])
+    print("# Autor           : " + info["Autor"])
+    print("# Execution_Date  : " + getTime())
+    print("# Calling         : " + info["calling"])
+    print(SEPARATOR_1)

@@ -1,3 +1,5 @@
+django==4.1.7
+matplotlib==3.7.1
 aiofiles==23.1.0
 anyio==3.6.2
 attrs==22.2.0
@@ -76,3 +78,4 @@ wadllib==1.3.6
 xdg==5.0.0
 yarg==0.1.9
 zipp==1.0.0
+pyfiglet==0.8.post1

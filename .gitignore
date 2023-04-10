@@ -130,10 +130,5 @@ dmypy.json
 
 # By my side
 .idea/
-*_test.*
-*_test
-scripts/lanzar.sh
-config/config-example.json
-secret_key.txt
-mysite
-output.png
+config/secret_key.txt
+*_test.json
