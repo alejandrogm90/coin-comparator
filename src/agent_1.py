@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-
+import json
 import sys
 
-from commons.CoinWallet import CoinWallet
+from src.commons.coin_wallet import CoinWallet
+from src.commons.common_functions_SQL import get_values
 
 if __name__ == '__main__':
     if len(sys.argv) != 6:
@@ -10,10 +11,14 @@ if __name__ == '__main__':
         print("Erroneous parameter number.")
         exit(1)
     else:
-        myBank = CoinWallet(sys.argv[1], sys.argv[2], float(sys.argv[3]), float(sys.argv[4]), float(sys.argv[5]))
+        f1 = open('config_example.json')
+        CONFIG_AGENT = json.load(f1)
+        f1.close()
+        myBank = CoinWallet(CONFIG_AGENT, sys.argv[1], sys.argv[2], float(sys.argv[3]), float(sys.argv[4]),
+            float(sys.argv[5]))
         sentence = "SELECT * FROM coinlayer_historical WHERE date <= '" + sys.argv[1] + "' AND name='" + sys.argv[
             2] + "' ORDER BY date DESC LIMIT 2"
-        rows = CoinWallet.getValues(sentence)
+        rows = get_values(CONFIG_AGENT["SQLITLE_PATH"], sentence)
         currentPrice = rows[0][2]
 
         if myBank.getCash() > currentPrice and CoinWallet.isDecreasing(rows):

@@ -2,10 +2,8 @@
 
 import json
 import logging.config
-import os.path
+import os
 import sys
-
-import pymongo
 import requests
 
 import commons.common_functions as cfs
@@ -17,7 +15,7 @@ LOGGER = logging.getLogger("testLogger")
 LOG_FILE = PROJECT_PATH + "/log/" + cfs.getFileLog(sys.argv[0])
 CONFIG = cfs.load_config(PROJECT_PATH, LOGGER, LOG_FILE)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     # PARAMETERS
     if len(sys.argv) != 2:
         cfs.errorMsg(LOGGER, 1, "Erroneous parameter number.", LOG_FILE)
@@ -28,7 +26,6 @@ if __name__ == "__main__":
     HOST_URL = CONFIG["HOST_URL"]
     ACCESS_KEY = CONFIG["ACCESS_KEY"]
     URL1 = HOST_URL + "/" + SELECTED_DATE + "?access_key=" + ACCESS_KEY
-    URL_MONGODB = CONFIG["URL_MONGODB"]
 
     payload = {}
     headers = {}
@@ -37,24 +34,3 @@ if __name__ == "__main__":
     data = response.json()
 
     cfs.guardar_json(JSON_PATH, data)
-
-    if data == "":
-        cfs.errorMsg(LOGGER, 1, "Default configuration have to be replaced", LOG_FILE)
-
-    finalData = {
-        "_id": SELECTED_DATE,
-        "rates": data["rates"]
-    }
-
-    myClient = pymongo.MongoClient(URL_MONGODB)
-    myDataBase = myClient["coinlayer"]
-    myCollection = myDataBase["historical"]
-
-    MY_QUERY_TEXT = {
-        "_id": SELECTED_DATE
-    }
-    x = "NONE"
-    if myCollection.count_documents(MY_QUERY_TEXT) > 0:
-        x = myCollection.replace_one(MY_QUERY_TEXT, finalData)
-    else:
-        x = myCollection.insert_one(finalData)

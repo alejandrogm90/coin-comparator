@@ -2,14 +2,14 @@
 
 # VARIABLES AND FUNCTIONS
 DIR_HOME=$(cd `dirname $0` && pwd)
-source "$DIR_HOME/commons/commonFunctions.sh"
+source "$DIR_HOME/commons/common_functions.sh"
 DIR_LOG="`dirname $DIR_HOME`/log"
 SCRIPT_NAME="`getJustStriptName $0`"
 export LOG_FILE="${DIR_LOG}/${SCRIPT_NAME}_`date +%F`.log"
 declare -A script_info
 export script_info=(
-	[name]="${SCRIPT_NAME}" 
-	[location]="${DIR_HOME}" 
+	[name]="${SCRIPT_NAME}"
+	[location]="${DIR_HOME}"
 	[description]="A simple monthly script to get al data of one month"
 	[calling]="./`getScriptName $0`"
 )

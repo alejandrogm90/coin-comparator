@@ -2,15 +2,15 @@
 
 # VARIABLES AND FUNCTIONS
 DIR_HOME=$(cd `dirname $0` && pwd)
-source "$DIR_HOME/commons/commonFunctions.sh"
+source "$DIR_HOME/commons/common_functions.sh"
 DIR_LOG="`dirname $DIR_HOME`/log"
 SCRIPT_NAME="`getJustStriptName $0`"
 export LOG_FILE="${DIR_LOG}/${SCRIPT_NAME}_`date +%F`.log"
 declare -A script_info
 export script_info=(
-	[name]="${SCRIPT_NAME}" 
-	[location]="${DIR_HOME}" 
-	[description]="A simple monthly scrit to get al data of one month" 
+	[name]="${SCRIPT_NAME}"
+	[location]="${DIR_HOME}"
+	[description]="A simple monthly scrit to get al data of one month"
 	[calling]="./`getScriptName $0` [CONNECTOR] [YEAR] [MONTH]"
 )
 
@@ -27,13 +27,12 @@ else
         showError 3 "Is not a valid date YYYY-MM-DD"
     else
         for day in `getAllDatesOfOneMonth $2 $3` ; do
-            showInfo "Saving day: $day"
-            $0 "$day"
+            $1 "$day"
             respuesta=$?
             if [ $respuesta -eq 0 ] ; then
-                showInfo "Completed $0 $day"
+                showInfo "Completed $1 $day"
             else
-                showWarn "$0 $day"
+                showWarn "ERROR in $1 $day"
             fi
         done
     fi

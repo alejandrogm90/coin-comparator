@@ -5,8 +5,6 @@ import logging.config
 import os
 import sys
 
-import requests
-
 import commons.common_functions as cfs
 import commons.common_functions_SQL as cfsql
 
@@ -25,20 +23,14 @@ if __name__ == '__main__':
     SELECTED_DATE = str(sys.argv[1])
     SELECTED_YEAR = SELECTED_DATE.split('-')[0]
     JSON_PATH = PROJECT_PATH + "/data/" + SELECTED_YEAR + "/" + SELECTED_DATE + "_coinlayer.json"
-    HOST_URL = CONFIG["HOST_URL"]
-    ACCESS_KEY = CONFIG["ACCESS_KEY"]
-    URL1 = HOST_URL + "/" + SELECTED_DATE + "?access_key=" + ACCESS_KEY
 
-    payload = {}
-    headers = {}
-
-    response = requests.request("GET", URL1, headers=headers, data=payload)
-    data = response.json()
-
-    cfs.guardar_json(JSON_PATH, data)
-
-    first_part = "INSERT INTO coins_coinlayer_historical (date_part,name,value) "
-    for element in data["rates"]:
-        sentence = first_part + " VALUES('" + SELECTED_DATE + "','" + element + "'," + str(data["rates"][element]) + ")"
-        print(PROJECT_PATH + CONFIG["SQLITLE_PATH"])
-        cfsql.execute(PROJECT_PATH + CONFIG["SQLITLE_PATH"], sentence)
+    # Cargar datos desde los ficheros JSON previamente generados
+    if os.path.exists(JSON_PATH):
+        data = cfs.cargar_json(JSON_PATH)
+        first_part = " INSERT INTO coins_coin_day (id, date_part,name,value) "
+        for element in data["rates"]:
+            sentence = first_part + " VALUES('"+SELECTED_DATE + "_"+element+"', '" + SELECTED_DATE + "','" + element + \
+                "'," + str(data["rates"][element]) + ")"
+            cfsql.execute(PROJECT_PATH + CONFIG["SQLITLE_PATH"], sentence)
+    else:
+        cfs.errorMsg(LOGGER, 2, JSON_PATH + " file do not exist", LOG_FILE)

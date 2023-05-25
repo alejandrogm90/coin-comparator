@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <base href="http://127.0.0.1:8000/coins">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coin Comparator</title>
+    <link rel="stylesheet" href="{% static 'coins/css/style1.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{% static 'coins/js/basic.js' %}"></script>
+    <link rel="icon" type="image/x-icon" href="{% static 'coins/img/favicon.png' %}">
+</head>
+<body>
+    <section id="header">
+        <span class='logo'>
+            <img class='logo' alt="Logotipo" src="{% static 'coins/img/logo.png' %}" />
+        </span>
+    </section>
+        <div class='grid'>
+        <section id='sidebar'>
+            <button class="accordion">Dates saved</button>
+            <div class="panel">
+                {% for dt1 in dates_saved %}
+                    <p><a href="#{{ dt1.date_part }}">{{ dt1.date_part }}</a></p>
+                {% endfor %}
+            </div>
+            <button class="accordion">Coins</button>
+            <div class="panel">
+                {% for c1 in coin_names %}
+                    <p><a href="#{{ c1.name }}">{{ c1.name }}</a></p>
+                {% endfor %}
+            </div>
+            <button class="accordion">Section 3</button>
+            <div class="panel">
+                <p><a href="#">Link 1</a></p>
+                <p><a href="#">Link 2</a></p>
+                <p><a href="#">Link 3</a></p>
+            </div>
+
+        </section>
+        <section id="content">
+            {% block content %}{% endblock %}
+        </section>
+    </div>
+    </body>
+</html>

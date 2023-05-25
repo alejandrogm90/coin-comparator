@@ -1,31 +1,58 @@
 #!/usr/bin/env python3
 
+import json
 import os
-import sqlite3
+import pyfiglet
 from calendar import monthrange
 from time import gmtime, strftime
 
-import pyfiglet
-
 SEPARATOR_1 = "###############################################################################################"
+PROJECT_PATH = ""
+
+
+def load_config(project_path, logger, log_file):
+    if os.path.exists(project_path + "/config/config.json"):
+        return json.load(open(project_path + "/config/config.json"))
+    else:
+        errorMsg(logger, 2, "Default configuration must be replaced", log_file)
+
+
+def cargar_json(path):
+    with open(path, 'r') as f1:
+        data = json.load(f1)
+    f1.close()
+    return data
+
+
+def guardar_json(path, data):
+    father_directory = os.path.dirname(path)
+    if not os.path.exists(father_directory):
+        os.makedirs(father_directory)
+    with open(path, 'w', encoding='utf-8') as f1:
+        json.dump(data, f1, ensure_ascii=False, indent=4)
+    f1.close()
 
 
 def getProjetPath():
-    """ Return the project absolute path
+    """ Returns the project absolute path
     :return: path as string
     """
-    return os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
+    if PROJECT_PATH != "":
+        return PROJECT_PATH
+    else:
+        # Otra forma es usando os.path.dirname(os.path.abspath(sys.argv[0]))
+        return os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 
 
 def getTime():
-    """ Return a complete date as YYYY-MM-dd HH:mm
+    """ Returns a complete date as YYYY-MM-dd HH:mm
     :return: all date as string
     """
     return strftime("%Y-%m-%d %H:%M:%S", gmtime())
 
 
 def getDate():
-    """ Return a complete date as YYYY-MM-dd
+    """ Returns a complete date as YYYY-MM-dd
     :return: all date as string
     """
     return strftime("%Y-%m-%d", gmtime())
@@ -63,21 +90,6 @@ def isDate(cadena):
         return True
 
 
-def create_sqlitle3_connection(db_file):
-    """ create a database connection to the SQLite database
-        specified by db_file
-    :param db_file: database file
-    :return: Connection object or None
-    """
-    conn = None
-    try:
-        conn = sqlite3.connect(db_file)
-    except sqlite3.Error as e:
-        print(e)
-
-    return conn
-
-
 def printBanner(character, textList):
     """ Print a simple banner
     :param text: text to print
@@ -106,7 +118,7 @@ def printMegaBanner(text):
 
 
 def printFileEncoded(nombre):
-    """ print file with encoded text
+    """ Print file with encoded text
     :param nombre: file's URI
     """
     f1 = open(nombre, 'r')
@@ -120,7 +132,7 @@ def printFileEncoded(nombre):
 
 
 def getFiletName(location, extension=False):
-    """ return file name not URI location
+    """ Returns file name not URI location
     :param location: URI of scritp
     :return: file name
     """
@@ -141,7 +153,7 @@ def getFiletName(location, extension=False):
 
 
 def getFileLog(location):
-    """ return file name not URI location
+    """ Returns file name not URI location
     :param location: URI of scritp
     :return: file log name
     """

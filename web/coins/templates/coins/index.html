@@ -1,0 +1,12 @@
+{% extends "coins/base.html" %}
+{% block content %}
+    <p>index</p>
+    <div id="div1">
+        <canvas id="myChart"></canvas>
+        <ul>
+        {% for c1 in coin_names %}
+            <li>{{ c1.name }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
