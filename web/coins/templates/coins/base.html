@@ -23,7 +23,7 @@
             <button class="accordion">Dates saved</button>
             <div class="panel">
                 {% for dt1 in dates_saved %}
-                    <p><a href="#{{ dt1.date_part }}">{{ dt1.date_part }}</a></p>
+                    <p><a href="/month/{{ dt1 }}">{{ dt1 }}</a></p>
                 {% endfor %}
             </div>
             <button class="accordion">Coins</button>
@@ -41,7 +41,8 @@
 
         </section>
         <section id="content">
-            {% block content %}{% endblock %}
+            {% block content %}
+            {% endblock %}
         </section>
     </div>
     </body>

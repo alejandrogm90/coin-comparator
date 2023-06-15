@@ -1,0 +1,51 @@
+{% extends "coins/base.html" %}
+{% block content %}
+<div id="div1">
+    <script>
+        async function insert_data_json() {
+            const data_json = {{ month_data | safe }} ;
+            ctx = document.getElementById('myChart');
+
+            new Chart(ctx, {
+                type: 'line',
+                options: {
+                    responsive: true,
+                    parsing: {
+                        xAxisKey: 'date_part',
+                        yAxisKey: 'value'
+                    },
+                    legend: {
+                         position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Chart.js Line Chart'
+                    }
+                },
+                data: {
+                    datasets: data_json
+                },
+            });
+        };
+
+        document.addEventListener("DOMContentLoaded", insert_data_json);
+    </script>
+    <div id="coin-selector-box">
+        <h1>Coins</h1>
+        {% for cl1 in coin_list %}
+            <label><input type="checkbox" id="{{ cl1 }}" value="{{ cl1 }}">  {{ cl1 }}</label>
+            <!--
+
+
+                <label class="container">{{ cl1 | safe }}
+                  <input type="checkbox">
+                  <span class="checkmark"></span>
+                </label>
+            -->
+        {% endfor %}
+    </div>
+    <div id="div_myChart">
+        <canvas id="myChart">Your browser does not support the canvas element.</canvas>
+    </div>
+</div>
+{% endblock %}

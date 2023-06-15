@@ -18,6 +18,7 @@ Frameworks and libraries used to bootstrap the project:
 * [![Bash][bash-shield]][bash-url]
 * [![Python][python-shield]][python-url]
 * [![Django][django-shield]][django-url]
+* Chartjs [Official Website](https://www.chartjs.org/)
 
 ## Getting Started
 
@@ -31,48 +32,62 @@ You need install first:
 * _Bash_
 * _Python3_
 
-```sh
-pip install -r requirements.txt
-```
-
 ### Installation
 
 - Go to main project at [https://github.com/alejandrogm90/coin-comparator][project-url]
 - Clone the repo:
-```sh
-git clone https://github.com/alejandrogm90/coin-comparator.git
+```shell
+$ git clone https://github.com/alejandrogm90/coin-comparator.git
 ```
 
 - Install all requirements:
-```python
-pip3 install -r 
+```shell
+$ pip install -r requirements.txt
 ```
 
 - Configure django:
-
-Create database
-```python
-python manage.py migrate
+Create basic database
+```shell
+$ ./web/manage.py migrate
+$ ./web/manage.py makemigrations
 ```
-```python
-python manage.py makemigrations coins
+Create coins database
+```shell
+$ ./web/manage.py migrate coins
+$ ./web/manage.py makemigrations coins
 ```
-Create admin
-```python
-python manage.py createsuperuser
+Create admin for all
+```shell
+$ ./web/manage.py createsuperuser
 ```
 
 
 ## Usage
-To get a specific month use:
-```sh
-cd src 
-./launch_month.sh connector_coinlayer_sqlitle.py 2022 1
+How to get data from web:
+```shell
+# If we are using coinlayer
+# To launch a specific month and download data saving it in json
+$ ./src/launch_month.sh connector_coinlayer_json.py 2022 1
+# To launch a specific month and download data saving it in sqlitle
+$ ./src/launch_month.sh connector_coinlayer_sqlitle.py 2022 1
+# To launch a specific month and download data saving it in mongodb
+$ ./src/launch_month.sh connector_coinlayer_mongodb.py 2022 1
+# To launch a specific month and loading from our data and saving in sqlitle
+$ ./src/launch_month.sh connector_coinlayer_json_load_sqlittle.py 2022 1
 ```
 
-To run server is required to use this sentence: 
-```python
-python manage.py runserver
+Changing our data:
+```shell
+# If we are using coinlayer
+# To launch a specific month and loading from our data and saving in sqlitle
+$ ./src/launch_month.sh connector_coinlayer_json_load_sqlittle.py 2022 1
+# To launch a specific year and save it in XLSX, CSV, JSON and PARQET
+$ ./src/save_year_using_dataframe.py 2022 coinlayer
+```
+
+To run web server is required to use this sentence: 
+```shell
+$ ./web/manage.py runserver
 ```
 
 _For more examples, please refer to the [Documentation][project-url]_
@@ -108,7 +123,10 @@ Alejandro Gómez - [@alejandrogm90](https://github.com/alejandrogm90)
 
 Project Link: [https://github.com/alejandrogm90/coin-comparator][project-url]
 
-<!-- pip freeze > requirements.txt -->
+<!-- 
+pip freeze > requirements.txt 
+pipreqs --force
+-->
 
 [product-screenshot]: config/logo.png
 

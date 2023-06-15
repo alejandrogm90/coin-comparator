@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 
-import json
 import logging.config
 import os
 import sys
 
 import commons.common_functions as cfs
-import commons.common_functions_SQL as cfsql
+import commons.common_functions_SQLITLE as cfsql
 
 # GLOBALS
 PROJECT_PATH = cfs.getProjetPath()

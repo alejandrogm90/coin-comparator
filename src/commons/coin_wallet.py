@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
 
 class CoinWallet:
-    def __init__(self, config, cDate, coinName, cash, coins, price):
+    def __init__(self, config, cDate, coinName, cash, coins):
         self.config = config
         self.cDate = cDate
         self.coinName = coinName
         self.cash = cash
         self.coins = coins
-        self.price = price
         self.action = "NONE"
 
     @staticmethod

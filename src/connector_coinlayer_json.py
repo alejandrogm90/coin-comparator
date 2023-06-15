@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 
-import json
 import logging.config
-import os
 import sys
 import requests
 

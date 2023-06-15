@@ -3,7 +3,7 @@
 import sys
 
 from commons.coin_wallet import CoinWallet
-from src.commons.common_functions_SQL import get_values
+from src.commons.common_functions_SQLITLE import get_values
 
 if __name__ == '__main__':
     if len(sys.argv) != 6:

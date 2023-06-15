@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import json
 import logging.config
 import os
 import sys
@@ -8,7 +7,7 @@ import sys
 import requests
 
 import commons.common_functions as cfs
-import commons.common_functions_SQL as cfsql
+import commons.common_functions_SQLITLE as cfsql
 
 # GLOBALS
 PROJECT_PATH = cfs.getProjetPath()
@@ -37,8 +36,13 @@ if __name__ == '__main__':
 
     cfs.guardar_json(JSON_PATH, data)
 
-    first_part = "INSERT INTO coins_coinlayer_historical (date_part,name,value) "
-    for element in data["rates"]:
-        sentence = first_part + " VALUES('" + SELECTED_DATE + "','" + element + "'," + str(data["rates"][element]) + ")"
-        print(PROJECT_PATH + CONFIG["SQLITLE_PATH"])
-        cfsql.execute(PROJECT_PATH + CONFIG["SQLITLE_PATH"], sentence)
+    # Cargar datos desde los ficheros JSON previamente generados
+    if os.path.exists(JSON_PATH):
+        data = cfs.cargar_json(JSON_PATH)
+        first_part = " INSERT INTO coins_coin_day (id, date_part,name,value) "
+        for element in data["rates"]:
+            sentence = first_part + " VALUES('" + SELECTED_DATE + "_" + element + "', '" + SELECTED_DATE + "','" + \
+                element + "'," + str(data["rates"][element]) + ")"
+            cfsql.execute(PROJECT_PATH + CONFIG["SQLITLE_PATH"], sentence)
+    else:
+        cfs.errorMsg(LOGGER, 2, JSON_PATH + " file do not exist", LOG_FILE)

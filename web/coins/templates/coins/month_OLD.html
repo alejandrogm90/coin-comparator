@@ -1,0 +1,38 @@
+{% extends "coins/base.html" %}
+{% block content %}
+    <div id="div1">
+        <script>
+            async function insert_data_json() {
+              const data = {{ month_data | safe }} ;
+
+              ctx = document.getElementById('myChart');
+              new Chart(ctx, {
+                type: 'line',
+                data: {
+                  labels: data.map(row => row.date_part),
+                  datasets: [
+                    {
+                      label: 'Acquisitions by day',
+                      data: data.map(row => row.value)
+                    }
+                  ]
+                }
+              });
+            };
+
+            function ready2() {
+                insert_data_json();
+            };
+
+            document.addEventListener("DOMContentLoaded", ready2);
+        </script>
+        <div id="div_myChart">
+            <canvas id="myChart">Your browser does not support the canvas element.</canvas>
+        </div>
+        <ul>
+        {% for c1 in dates_saved %}
+            <li>{{ c1 }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

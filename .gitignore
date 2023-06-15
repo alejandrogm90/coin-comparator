@@ -133,5 +133,6 @@ dmypy.json
 config/config.json
 config/secret_key.txt
 data/*.json
-data/*/*.json
+data/*/*.*
 *_test.json
+requirements_TMP.txt

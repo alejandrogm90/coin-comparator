@@ -11,6 +11,10 @@ PROJECT_PATH = ""
 
 
 def load_config(project_path, logger, log_file):
+    """ Load a json config file
+    :param path: full path
+    :return: json data
+    """
     if os.path.exists(project_path + "/config/config.json"):
         return json.load(open(project_path + "/config/config.json"))
     else:
@@ -18,6 +22,10 @@ def load_config(project_path, logger, log_file):
 
 
 def cargar_json(path):
+    """ Load a json file
+    :param path: full path
+    :return: json data
+    """
     with open(path, 'r') as f1:
         data = json.load(f1)
     f1.close()
@@ -25,6 +33,10 @@ def cargar_json(path):
 
 
 def guardar_json(path, data):
+    """ Write a json file
+    :param path: full path
+    :param data: data to write
+    """
     father_directory = os.path.dirname(path)
     if not os.path.exists(father_directory):
         os.makedirs(father_directory)
@@ -59,6 +71,9 @@ def getDate():
 
 
 def getHeadLine(level):
+    """ Returns log format headline
+    :return: string log format
+    """
     return "[" + getTime() + "][" + level + "]"
 
 
@@ -204,6 +219,9 @@ def errorMsg(logger, num, msg, outputFile=""):
 
 
 def showScriptInfo(info):
+    """ Show a basic info
+    :param info: array with all info
+    """
     print(SEPARATOR_1)
     print("# Name            : " + info["name"])
     print("# Location        : " + info["location"])
