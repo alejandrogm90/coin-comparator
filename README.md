@@ -1,3 +1,4 @@
+[![Version][version-shield]][version-url]
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -130,6 +131,7 @@ pipreqs --force
 
 [product-screenshot]: config/logo.png
 
+[version-shield]: https://img.shields.io/badge/version-0.1.0-blue?style=for-the-badge
 [bash-shield]: https://img.shields.io/badge/bash-000000?style=for-the-badge&logo=gnubash&logoColor=white
 [python-shield]: https://img.shields.io/badge/python-000000?style=for-the-badge&logo=python&logoColor=white
 [django-shield]: https://img.shields.io/badge/django-000000?style=for-the-badge&logo=django&logoColor=white
@@ -140,6 +142,7 @@ pipreqs --force
 [license-shield]: https://img.shields.io/github/license/alejandrogm90/coin-comparator.svg?style=for-the-badge
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 
+[version-url]: https://github.com/alejandrogm90/coin-comparator/
 [bash-url]: https://www.gnu.org/software/bash/
 [python-url]: https://www.python.org/
 [django-url]: https://www.djangoproject.com/
