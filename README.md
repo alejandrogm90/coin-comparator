@@ -127,6 +127,10 @@ Project Link: [https://github.com/alejandrogm90/coin-comparator][project-url]
 <!-- 
 pip freeze > requirements.txt 
 pipreqs --force
+
+# Test
+python3 -m pip install coverage
+python3 -m unittest discover
 -->
 
 [product-screenshot]: config/logo.png

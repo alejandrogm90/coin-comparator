@@ -131,6 +131,7 @@ dmypy.json
 # By my side
 .idea/
 config/config.json
+config/config_agent.json
 config/secret_key.txt
 data/*.json
 data/*/*.*

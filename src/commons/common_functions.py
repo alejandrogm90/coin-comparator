@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+import datetime
 import json
 import os
 import pyfiglet
@@ -54,20 +54,6 @@ def getProjetPath():
     else:
         # Otra forma es usando os.path.dirname(os.path.abspath(sys.argv[0]))
         return os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
-
-
-def getTime():
-    """ Returns a complete date as YYYY-MM-dd HH:mm
-    :return: all date as string
-    """
-    return strftime("%Y-%m-%d %H:%M:%S", gmtime())
-
-
-def getDate():
-    """ Returns a complete date as YYYY-MM-dd
-    :return: all date as string
-    """
-    return strftime("%Y-%m-%d", gmtime())
 
 
 def getHeadLine(level):
@@ -230,3 +216,39 @@ def showScriptInfo(info):
     print("# Execution_Date  : " + getTime())
     print("# Calling         : " + info["calling"])
     print(SEPARATOR_1)
+
+
+def get_list_days(year: int, month: int):
+    list_days = []
+    str_list_days = f"{year}-{month}-"
+    if month < 10:
+        str_list_days = f"{year}-0{month}-"
+    for day in range(1, monthrange(year, month)[1]+1):
+        if day > 9:
+            list_days.append(str_list_days+str(day))
+        else:
+            list_days.append(str_list_days + "0{0}".format(day))
+    return list_days
+
+
+def getTime():
+    """ Returns a complete date as YYYY-MM-dd HH:mm
+    :return: all date as string
+    """
+    return strftime("%Y-%m-%d %H:%M:%S", gmtime())
+
+
+def getDate():
+    """ Returns a complete date as YYYY-MM-dd
+    :return: all date as string
+    """
+    return strftime("%Y-%m-%d", gmtime())
+
+
+def getDatetime(date=strftime("%Y-%m-%d", gmtime())):
+    """ Returns a complete date as YYYY-MM-dd
+    :return: all date as string
+    """
+    list_time = date.split("-")
+    d1 = datetime.datetime(int(list_time[0]), int(list_time[1]), int(list_time[2]))
+    return d1
