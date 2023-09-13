@@ -18,18 +18,20 @@ CONFIG = cfs.load_config(PROJECT_PATH, LOGGER, LOG_FILE)
 
 
 def replace_basic_file(default_file: str, explected_file: str):
-    print(f'Replace {default_file} for {explected_file}')
-    if (not os.path.exists(explected_file)):
+    default_path = PROJECT_PATH + default_file
+    explected_path = PROJECT_PATH + explected_file
+    print(f'Replace {default_path} for {explected_path}')
+    if (not os.path.exists(explected_path)):
         print("Replaced")
-        copyfile(default_file, explected_file)
+        copyfile(default_path, explected_path)
         return True
     return False
 
 
 def main():
-    replace_basic_file(PROJECT_PATH + '/config/config_example.json', PROJECT_PATH + '/config/config.json')
-    replace_basic_file(PROJECT_PATH + '/config/config_agent_example.json', PROJECT_PATH + '/config/config_agent.json')
-    replace_basic_file(PROJECT_PATH + '/config/secret_key_example.txt', PROJECT_PATH + '/config/secret_key.txt')
+    replace_basic_file('/config/config_example.json', '/config/config.json')
+    replace_basic_file('/config/config_agent_example.json', '/config/config_agent.json')
+    replace_basic_file('/config/secret_key_example.txt', '/config/secret_key.txt')
     cfs.infoMsg(LOGGER, "Getting current month ....", LOG_FILE)
     c_date = cfs.getDatetime()
     c_date = c_date - relativedelta(months=+1)
