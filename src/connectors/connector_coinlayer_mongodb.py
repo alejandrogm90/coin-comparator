@@ -6,19 +6,19 @@ import sys
 import pymongo
 import requests
 
-import commons.common_functions as cfs
+import utils.common_functions as cf
 
 # GLOBALS
-PROJECT_PATH = cfs.getProjetPath()
+PROJECT_PATH = cf.getProjetPath()
 logging.config.fileConfig(PROJECT_PATH + "/config/logging.properties")
 LOGGER = logging.getLogger("testLogger")
-LOG_FILE = PROJECT_PATH + "/log/" + cfs.getFileLog(sys.argv[0])
-CONFIG = cfs.load_config(PROJECT_PATH, LOGGER, LOG_FILE)
+LOG_FILE = PROJECT_PATH + "/log/" + cf.getFileLog(sys.argv[0])
+CONFIG = cf.load_config(PROJECT_PATH, LOGGER, LOG_FILE)
 
 if __name__ == "__main__":
     # PARAMETERS
     if len(sys.argv) != 2:
-        cfs.errorMsg(LOGGER, 1, "Erroneous parameter number.", LOG_FILE)
+        cf.error_msg(1, "Erroneous parameter number.", LOG_FILE)
     
     SELECTED_DATE = str(sys.argv[1])
     SELECTED_YEAR = SELECTED_DATE.split('-')[0]
@@ -34,10 +34,10 @@ if __name__ == "__main__":
     response = requests.request("GET", URL1, headers=headers, data=payload)
     data = response.json()
 
-    cfs.guardar_json(JSON_PATH, data)
+    cf.guardar_json(JSON_PATH, data)
 
     if data == "":
-        cfs.errorMsg(LOGGER, 1, "Default configuration have to be replaced", LOG_FILE)
+        cf.error_msg(1, "Default configuration have to be replaced", LOG_FILE)
 
     finalData = {
         "_id": SELECTED_DATE,

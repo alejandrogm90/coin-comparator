@@ -5,29 +5,29 @@ import logging.config
 import os
 import sys
 
-import commons.common_functions as cfs
+import utils.common_functions as cf
 
 # GLOBALS
-PROJECT_PATH = cfs.getProjetPath()
+PROJECT_PATH = cf.getProjetPath()
 logging.config.fileConfig(PROJECT_PATH + "/config/logging.properties")
 LOGGER = logging.getLogger("testLogger")
-LOG_FILE = PROJECT_PATH + "/log/" + cfs.getFileLog(sys.argv[0])
-CONFIG = cfs.load_config(PROJECT_PATH, LOGGER, LOG_FILE)
+LOG_FILE = PROJECT_PATH + "/log/" + cf.getFileLog(sys.argv[0])
+CONFIG = cf.load_config(PROJECT_PATH, LOGGER, LOG_FILE)
 
 if __name__ == '__main__':
     info = {
-        "name": str(cfs.getFiletName(sys.argv[0], True)),
+        "name": str(cf.getFiletName(sys.argv[0], True)),
         "location": sys.argv[0],
         "description": "Create a complete data file of a year in CSV and JSON",
         "Autor": "Alejandro Gómez",
         "calling": sys.argv[0] + " 2023 coinlayer"
     }
-    cfs.showScriptInfo(info)
+    cf.showScriptInfo(info)
 
     # PARAMETERS
     if len(sys.argv) != 3:
-        cfs.infoMsg(LOGGER, sys.argv[0]+" [YEAR] [SOURCE]", LOG_FILE)
-        cfs.errorMsg(LOGGER, 1, "Erroneous parameter number.", LOG_FILE)
+        cf.info_msg(sys.argv[0]+" [YEAR] [SOURCE]", LOG_FILE)
+        cf.error_msg(1, "Erroneous parameter number.", LOG_FILE)
 
     # Constants
     SELECTED_YEAR = str(sys.argv[1])
@@ -49,8 +49,8 @@ if __name__ == '__main__':
         for file1 in LIST_FILES:
             if SELECTED_SOURCE in file1:
                 file_name = DATA_DIRECTORY + file1
-                cfs.infoMsg(LOGGER, "Loading file: "+file1)
-                data = cfs.cargar_json(file_name)
+                cf.info_msg("Loading file: "+file1)
+                data = cf.cargar_json(file_name)
                 # For each value in a day
                 for element in data["rates"]:
                     df_pandas.loc[len(df_pandas)] = [data["date"], element, data["rates"][element]]
@@ -62,6 +62,6 @@ if __name__ == '__main__':
         df_pandas.to_json(OUTPUT_PATH + ".json")
         df_pandas.to_excel(OUTPUT_PATH + ".xlsx")
         df_pandas.to_parquet(OUTPUT_PATH + ".parquet", partition_cols=MY_COLUMNS)
-        cfs.infoMsg(LOGGER, OUTPUT_NAME + " has been saved.", LOG_FILE)
+        cf.info_msg(OUTPUT_NAME + " has been saved.", LOG_FILE)
     else:
-        cfs.errorMsg(LOGGER, 2, DATA_DIRECTORY + " directory do not exist", LOG_FILE)
+        cf.error_msg(2, DATA_DIRECTORY + " directory do not exist", LOG_FILE)

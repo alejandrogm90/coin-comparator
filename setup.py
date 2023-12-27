@@ -7,14 +7,14 @@ from shutil import copyfile
 
 from dateutil.relativedelta import relativedelta
 
-import src.commons.common_functions as cfs
+import src.utils.common_functions as cf
 
 # GLOBALS
-PROJECT_PATH = cfs.getProjetPath()
+PROJECT_PATH = cf.getProjetPath()
 logging.config.fileConfig(PROJECT_PATH + '/config/logging.properties')
 LOGGER = logging.getLogger('testLogger')
-LOG_FILE = PROJECT_PATH + '/log/' + cfs.getFileLog(sys.argv[0])
-CONFIG = cfs.load_config(PROJECT_PATH, LOGGER, LOG_FILE)
+LOG_FILE = PROJECT_PATH + '/log/' + cf.getFileLog(sys.argv[0])
+CONFIG = cf.load_config(PROJECT_PATH, LOGGER, LOG_FILE)
 
 
 def replace_basic_file(default_file: str, explected_file: str):
@@ -32,28 +32,28 @@ def main():
     replace_basic_file('/config/config_example.json', '/config/config.json')
     replace_basic_file('/config/config_agent_example.json', '/config/config_agent.json')
     replace_basic_file('/config/secret_key_example.txt', '/config/secret_key.txt')
-    cfs.infoMsg(LOGGER, "Getting current month ....", LOG_FILE)
-    c_date = cfs.getDatetime()
+    cf.info_msg("Getting current month ....", LOG_FILE)
+    c_date = cf.getDatetime()
     c_date = c_date - relativedelta(months=+1)
-    for day in cfs.get_list_days(c_date.year, c_date.month):
+    for day in cf.get_list_days(c_date.year, c_date.month):
         subprocess.call("{0}/src/connector_coinlayer_json.py {1}".format(PROJECT_PATH, day), shell=True)
-    cfs.infoMsg(LOGGER, "Getting current month ....", LOG_FILE)
-    c_date = cfs.getDatetime()
-    for day in cfs.get_list_days(c_date.year, c_date.month):
+    cf.info_msg("Getting current month ....", LOG_FILE)
+    c_date = cf.getDatetime()
+    for day in cf.get_list_days(c_date.year, c_date.month):
         subprocess.call("{0}/src/connector_coinlayer_json.py {1}".format(PROJECT_PATH, day), shell=True)
-        if cfs.getDate() == day:
+        if cf.getDate() == day:
             break
-    cfs.infoMsg(LOGGER, "Current month saved ....", LOG_FILE)
+    cf.info_msg("Current month saved ....", LOG_FILE)
 
 
 if __name__ == '__main__':
     info = {
-        "name": str(cfs.getFiletName(sys.argv[0], True)),
+        "name": str(cf.getFiletName(sys.argv[0], True)),
         "location": sys.argv[0],
         "description": "Main script for create all environment",
         "Autor": "Alejandro Gómez",
         "calling": sys.argv[0]
     }
-    cfs.showScriptInfo(info)
+    cf.showScriptInfo(info)
 
     main()

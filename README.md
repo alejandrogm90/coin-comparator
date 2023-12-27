@@ -131,6 +131,9 @@ pipreqs --force
 # Test
 python3 -m pip install coverage
 python3 -m unittest discover
+
+# Coverage
+
 -->
 
 [product-screenshot]: config/logo.png

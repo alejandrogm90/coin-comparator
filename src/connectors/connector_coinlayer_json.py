@@ -5,14 +5,14 @@ import os.path
 import sys
 import requests
 
-import commons.common_functions as cfs
+import utils.common_functions as cf
 
 # GLOBALS
-PROJECT_PATH = cfs.getProjetPath()
+PROJECT_PATH = cf.getProjetPath()
 logging.config.fileConfig(PROJECT_PATH + "/config/logging.properties")
 LOGGER = logging.getLogger("testLogger")
-LOG_FILE = PROJECT_PATH + "/log/" + cfs.getFileLog(sys.argv[0])
-CONFIG = cfs.load_config(PROJECT_PATH, LOGGER, LOG_FILE)
+LOG_FILE = PROJECT_PATH + "/log/" + cf.getFileLog(sys.argv[0])
+CONFIG = cf.load_config(PROJECT_PATH, LOG_FILE)
 
 def save_day_in_json(SELECTED_DATE):
     SELECTED_YEAR = SELECTED_DATE.split('-')[0]
@@ -28,15 +28,15 @@ def save_day_in_json(SELECTED_DATE):
         response = requests.request("GET", URL1, headers=headers, data=payload)
         data = response.json()
 
-        cfs.guardar_json(JSON_PATH, data)
-        cfs.infoMsg(LOGGER, "DATA SAVED IN: {0}".format(JSON_PATH), LOG_FILE)
+        cf.guardar_json(JSON_PATH, data)
+        cf.info_msg("DATA SAVED IN: {0}".format(JSON_PATH), LOG_FILE)
     else:
-        cfs.infoMsg(LOGGER, "FILE ALREADY EXISTS IN: {0}".format(JSON_PATH), LOG_FILE)
+        cf.info_msg("FILE ALREADY EXISTS IN: {0}".format(JSON_PATH), LOG_FILE)
 
 
 if __name__ == '__main__':
     # PARAMETERS
     if len(sys.argv) != 2:
-        cfs.errorMsg(LOGGER, 1, "Erroneous parameter number.", LOG_FILE)
+        cf.error_msg(1, "Erroneous parameter number.", LOG_FILE)
 
     save_day_in_json(str(sys.argv[1]))
