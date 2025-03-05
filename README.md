@@ -37,40 +37,48 @@ You need install first:
 
 - Go to main project at [https://github.com/alejandrogm90/coin-comparator][project-url]
 - Clone the repo:
+
 ```shell
 $ git clone https://github.com/alejandrogm90/coin-comparator.git
 ```
 
 - Install all requirements:
+
 ```shell
 $ pip install -r requirements.txt
 ```
 
 - Configure django:
-Create basic database
+  Create basic database
+
 ```shell
 $ ./web/manage.py migrate
 $ ./web/manage.py makemigrations
 ```
+
 Create coins database
+
 ```shell
 $ ./web/manage.py migrate coins
 $ ./web/manage.py makemigrations coins
 ```
+
 Create admin for all
+
 ```shell
 $ ./web/manage.py createsuperuser
 ```
 
-
 ## Usage
+
 How to get data from web:
+
 ```shell
 # If we are using coinlayer
 # To launch a specific month and download data saving it in json
 $ ./src/launch_month.sh connector_coinlayer_json.py 2022 1
 # To launch a specific month and download data saving it in sqlitle
-$ ./src/launch_month.sh connector_coinlayer_sqlitle.py 2022 1
+$ ./src/launch_month.sh connector_coinlayer_sqlittle.py 2022 1
 # To launch a specific month and download data saving it in mongodb
 $ ./src/launch_month.sh connector_coinlayer_mongodb.py 2022 1
 # To launch a specific month and loading from our data and saving in sqlitle
@@ -78,6 +86,7 @@ $ ./src/launch_month.sh connector_coinlayer_json_load_sqlittle.py 2022 1
 ```
 
 Changing our data:
+
 ```shell
 # If we are using coinlayer
 # To launch a specific month and loading from our data and saving in sqlitle
@@ -86,7 +95,8 @@ $ ./src/launch_month.sh connector_coinlayer_json_load_sqlittle.py 2022 1
 $ ./src/save_year_using_dataframe.py 2022 coinlayer
 ```
 
-To run web server is required to use this sentence: 
+To run web server is required to use this sentence:
+
 ```shell
 $ ./web/manage.py runserver
 ```
@@ -120,9 +130,9 @@ Distributed under the License. See `LICENSE.txt` for more information.
 
 ## Contact
 
-Alejandro Gómez - [@alejandrogm90](https://github.com/alejandrogm90)
+Alejandro Gómez - [@alejandrogm90][project-url]
 
-Project Link: [https://github.com/alejandrogm90/coin-comparator][project-url]
+[Project Link][project-url]
 
 <!-- 
 pip freeze > requirements.txt 
@@ -132,31 +142,54 @@ pipreqs --force
 python3 -m pip install coverage
 python3 -m unittest discover
 
-# Coverage
+# Coverage - https://coverage.readthedocs.io/en/7.6.10/
+pipenv run python -m coverage run my_program.py arg1 arg2
+pipenv run python -m coverage run --source=tests
+pipenv run python -m coverage --source=tests html
+pipenv run python -m coverage --source=tests --directory=DIR html
 
 -->
 
 [product-screenshot]: config/logo.png
 
 [version-shield]: https://img.shields.io/badge/version-0.1.0-blue?style=for-the-badge
+
 [bash-shield]: https://img.shields.io/badge/bash-000000?style=for-the-badge&logo=gnubash&logoColor=white
+
 [python-shield]: https://img.shields.io/badge/python-000000?style=for-the-badge&logo=python&logoColor=white
+
 [django-shield]: https://img.shields.io/badge/django-000000?style=for-the-badge&logo=django&logoColor=white
+
 [contributors-shield]: https://img.shields.io/github/contributors/alejandrogm90/coin-comparator.svg?style=for-the-badge
+
 [forks-shield]: https://img.shields.io/github/forks/alejandrogm90/coin-comparator.svg?style=for-the-badge
+
 [stars-shield]: https://img.shields.io/github/stars/alejandrogm90/coin-comparator.svg?style=for-the-badge
+
 [issues-shield]: https://img.shields.io/github/issues/alejandrogm90/coin-comparator.svg?style=for-the-badge
+
 [license-shield]: https://img.shields.io/github/license/alejandrogm90/coin-comparator.svg?style=for-the-badge
+
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 
-[version-url]: https://github.com/alejandrogm90/coin-comparator/
-[bash-url]: https://www.gnu.org/software/bash/
-[python-url]: https://www.python.org/
-[django-url]: https://www.djangoproject.com/
-[contributors-url]: https://github.com/alejandrogm90/coin-comparator/graphs/contributors
-[forks-url]: https://github.com/alejandrogm90/coin-comparator/network/members
-[stars-url]: https://github.com/alejandrogm90/coin-comparator/stargazers
-[issues-url]: https://github.com/alejandrogm90/coin-comparator/issues
-[license-url]: https://github.com/alejandrogm90/coin-comparator/blob/master/LICENSE.txt
-[linkedin-url]: https://www.linkedin.com/in/alejandro-g-762869129/
 [project-url]: https://github.com/alejandrogm90/coin-comparator
+
+[version-url]: https://github.com/alejandrogm90/coin-comparator/
+
+[bash-url]: https://www.gnu.org/software/bash/
+
+[python-url]: https://www.python.org/
+
+[django-url]: https://www.djangoproject.com/
+
+[contributors-url]: https://github.com/alejandrogm90/coin-comparator/graphs/contributors
+
+[forks-url]: https://github.com/alejandrogm90/coin-comparator/network/members
+
+[stars-url]: https://github.com/alejandrogm90/coin-comparator/stargazers
+
+[issues-url]: https://github.com/alejandrogm90/coin-comparator/issues
+
+[license-url]: https://github.com/alejandrogm90/coin-comparator/blob/master/LICENSE.txt
+
+[linkedin-url]: https://www.linkedin.com/in/alejandro-g-762869129/

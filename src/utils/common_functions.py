@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 #
 #
 #       Copyright 2022 Alejandro Gomez
@@ -15,12 +14,13 @@
 #
 #       You should have received a copy of the GNU General Public License
 #       along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
+import calendar
+import datetime
 import json
 import logging
 import os
 from calendar import monthrange
-from time import gmtime, strftime
+from time import gmtime, strftime, struct_time
 
 logging.basicConfig(format='[%(asctime)s][%(levelname)s]%(message)s', datefmt='%Y-%d-%m %H:%M:%S', level=logging.INFO)
 LOGGER = logging
@@ -33,7 +33,18 @@ def get_head_line(level: str) -> str:
 
     :return: string log format
     """
-    return "[" + get_time() + "][" + level + "]"
+    return "[" + get_time_str() + "][" + level + "]"
+
+
+def debug_msg(msg: str, output_file="") -> None:
+    """ Show a menssage text
+
+    :param msg: info menssage
+    :param output_file: output file
+    """
+    LOGGER.debug(": {0}".format(msg))
+    if output_file != "":
+        print_log_in_file(output_file, "{0}: {1}".format(get_head_line("DEBUG"), msg))
 
 
 def info_msg(msg: str, output_file="") -> None:
@@ -83,15 +94,15 @@ def load_json(path: str) -> dict:
     return data
 
 
-def load_config(project_path: str, log_file="") -> dict:
+def load_config(project_path: str = "", log_file: str = "") -> dict:
     """ Load a json config file
 
     :param project_path: full path
     :param log_file: log file
     :return: json data
     """
-    full_path = "{0}/config/config.json".format(project_path)
-    if os.path.exists(full_path):
+    full_path = f"{project_path}/config/config.json"
+    if os.path.isfile(full_path):
         return load_json(full_path)
     else:
         error_msg(2, "Default configuration must be replaced", log_file)
@@ -132,7 +143,15 @@ def get_project_path() -> str:
         return os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 
 
-def get_time() -> str:
+def get_time() -> struct_time:
+    """ Returns a complete date as YYYY-MM-dd HH:mm
+
+    :return: all date as string
+    """
+    return gmtime()
+
+
+def get_time_str() -> str:
     """ Returns a complete date as YYYY-MM-dd HH:mm
 
     :return: all date as string
@@ -140,7 +159,11 @@ def get_time() -> str:
     return strftime("%Y-%m-%d %H:%M:%S", gmtime())
 
 
-def get_date() -> str:
+def get_datetime() -> datetime:
+    return datetime.datetime.now()
+
+
+def get_date_str() -> str:
     """ Returns a complete date as YYYY-MM-dd
 
     :return: all date as string
@@ -235,7 +258,7 @@ def get_file_log(location: str) -> str:
     :param location: URI of scritp
     :return: file log name
     """
-    return "{0}_{1}.log".format(get_file_name(location), get_date())
+    return "{0}_{1}.log".format(get_file_name(location), get_date_str())
 
 
 def print_log_in_file(output_file: str, msg: str) -> None:
@@ -257,10 +280,18 @@ def show_script_info(info: {}) -> None:
     :param info: array with all info
     """
     print(SEPARATOR_1)
-    print("# Name            : " + info["name"])
-    print("# Location        : " + info["location"])
-    print("# Description     : " + info["description"])
-    print("# Autor           : " + info["Autor"])
-    print("# Execution_Date  : " + get_time())
-    print("# Calling         : " + info["calling"])
+    print(f"# Name            : {info["name"]}")
+    print(f"# Location        : {info["location"]}")
+    print(f"# Description     : {info["description"]}")
+    print(f"# Autor           : {info["Autor"]}")
+    print(f"# Execution_Date  : {get_time_str()}")
+    print(f"# Calling         : {info["calling"]}")
     print(SEPARATOR_1)
+
+
+def get_list_days(year: int, month: int) -> list:
+    list_days = []
+    num_days = calendar.monthrange(year, month)[1]
+    for day in range(1, num_days):
+        list_days.append("{0}-{1}-{2}".format(year, month, day))
+    return list_days

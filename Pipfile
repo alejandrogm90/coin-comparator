@@ -1,11 +1,13 @@
 [[source]]
 url = "https://pypi.org/simple"
 verify_ssl = true
-name = "pypi"
+name = "coin-comparator"
 
 [packages]
 coverage = "*"
 django = "*"
+python-dateutil = "*"
+requests = "*"
 
 [dev-packages]
 

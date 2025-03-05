@@ -1,6 +1,7 @@
 # Create your models here.
 from django.db import models
 
+
 class coin_day(models.Model):
     id = models.CharField('id', max_length=20, primary_key=True)
     date_part = models.CharField('date_part', max_length=10)

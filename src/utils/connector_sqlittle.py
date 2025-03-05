@@ -1,10 +1,13 @@
-#!/usr/bin/env python3
-
 import sqlite3
 
 
 class ConnectorSQLittle:
-    def __int__(self, bd_path: str):
+    def __init__(self, bd_path: str):
+        """
+
+        :param bd_path: str
+        :return: ConnectorSQLittle
+        """
         self.bd_path = bd_path
         self.connect = None
         try:
@@ -13,10 +16,13 @@ class ConnectorSQLittle:
             print(e)
         except Exception as e:
             print(e)
+        if not self.connect:
+            raise Exception("an error occurred while connecting to sqlittle.")
         self.cursor = self.connect.cursor()
 
     def get_values(self, sentence: str):
         """ Returns values from SQLite database specified by db_file
+
         :param sentence: sentence
         :return: Connection object or None
         """
@@ -29,6 +35,7 @@ class ConnectorSQLittle:
 
     def execute(self, sentence: str):
         """ Execute a command in a SQLite database specified by db_file
+
         :param sentence: sentence str to execute
         """
         try:
@@ -38,8 +45,13 @@ class ConnectorSQLittle:
             print(e)
 
     def exist_coin(self, sdate: str, name: str) -> bool:
-        """"""
-        sql = "SELECT count(name) FROM coins_coin_day WHERE name = '" + name + "' AND date_part = '" + sdate + "' ;"
+        """Exist coin in data
+
+        :param sdate: string date
+        :param name: coin name
+        :return: true if exist
+        """
+        sql = f"SELECT count(name) FROM coins_coin_day WHERE name = '{name}' AND date_part = '{sdate}' ;"
         try:
             self.cursor.execute(sql)
             self.connect.commit()

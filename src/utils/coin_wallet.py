@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 from enum import Enum
 
 
@@ -20,7 +19,9 @@ class CoinWallet:
         self.action = ActionType.NO_ACTION
 
     def __str__(self):
-        return str(self.__dict__())
+        coin_wallet = f'config: {self.config}, c_date: {self.c_date}, coin_name: {self.coin_name}, cash: {self.cash}'
+        coin_wallet += f', coins: {self.coins}, price: {self.price}, action: {self.action}'
+        return coin_wallet
 
     def __dict__(self):
         return {
@@ -31,7 +32,7 @@ class CoinWallet:
             "coins": self.coins,
             "price": self.price,
             "action": self.action
-            }
+        }
 
     def get_log(self):
         return "{0}|{1}|{2:.8f}|{3:.8f}".format(self.c_date, self.action, self.cash, self.coins)

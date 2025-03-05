@@ -1,30 +1,26 @@
-#!/usr/bin/env python3
-
-import logging.config
 import os
 import sys
 
 import pandas as pd
 
-import utils.common_functions as cf
-import utils.connector_sqlittle as cfsql
+import src.utils.common_functions as cf
+import src.utils.connector_sqlittle as cfsql
 
 # GLOBALS
-PROJECT_PATH = cf.getProjetPath()
-logging.config.fileConfig(PROJECT_PATH + '/config/logging.properties')
-LOGGER = logging.getLogger('testLogger')
-LOG_FILE = PROJECT_PATH + '/log/' + cf.getFileLog(sys.argv[0])
-CONFIG = cf.load_config(PROJECT_PATH, LOGGER, LOG_FILE)
+PROJECT_PATH = cf.get_project_path()
+
+LOG_FILE = PROJECT_PATH + '/log/' + cf.get_file_log(sys.argv[0])
+CONFIG = cf.load_config(PROJECT_PATH, LOG_FILE)
 
 if __name__ == '__main__':
     info = {
-        "name": str(cf.getFiletName(sys.argv[0], True)),
+        "name": str(cf.get_file_name(sys.argv[0], True)),
         "location": sys.argv[0],
         "description": "A simple script to print info",
         "Autor": "Alejandro Gómez",
         "calling": sys.argv[0] + " 2023-05-07 BTC ABC USD"
     }
-    cf.showScriptInfo(info)
+    cf.show_script_info(info)
 
     # PARAMETERS
     if len(sys.argv) < 3:
@@ -42,13 +38,14 @@ if __name__ == '__main__':
             if cfsql.exist_coin(SQLITLE_PATH, SELECTED_DATE, sys.argv[elemento]):
                 coinList.append(str(sys.argv[elemento]))
             else:
-                LOGGER.warning("Coin '" + sys.argv[elemento] + "' do not exists")
+                cf.warn_msg("Coin '" + sys.argv[elemento] + "' do not exists")
         if len(coinList) > 0:
-            LOGGER.info(coinList)
+            cf.info_msg(coinList)
             coin_df = pd.DataFrame(columns=['date_part', 'name', 'value'])
             for coin in coinList:
-                sql = "SELECT date_part, name, value FROM coins_coin_day WHERE name = '" + coin + \
-                      "' AND date_part LIKE '" + JUST_MONTH + "%' ;"
+                sql = ("SELECT date_part, name, value FROM coins_coin_day WHERE name = '" + coin + ("' AND date_part "
+                                                                                                    "LIKE '") +
+                       JUST_MONTH + "%' ;")
                 print(sql)
                 for new_row in cfsql.get_values(SQLITLE_PATH, sql):
                     current_row = [new_row[0], new_row[1], new_row[2]]

@@ -1,8 +1,6 @@
 import json
 
-from django.http import HttpResponse
 from django.http import JsonResponse
-from django.template import loader
 from django.shortcuts import render
 
 from .models import coin_day
@@ -90,8 +88,11 @@ def get_json_month_old(request, date_part):
             if linea["value"] < data["min_rate"]:
                 data["min_rate"] = linea["value"]
             # data["rates"][linea["date_part"]][linea["name"]] = linea["value"]
-            data["rates"].append({ "date_part": linea["date_part"], "name": linea["name"], "value": linea["value"] })
-
+            data["rates"].append({
+                "date_part": linea["date_part"],
+                "name": linea["name"],
+                "value": linea["value"]
+            })
 
         """
         data = {
@@ -141,10 +142,12 @@ def month(request, date_part):
     coin_day_list_1 = coin_day.objects.filter(date_part__iendswith="-01").values("date_part").distinct()
     coin_day_list_1 = getSavedDates(coin_day_list_1)
     month_data = get_all_month(date_part)
+    month_str = date_part[0:7]
     context = {
         "dates_saved": coin_day_list_1,
         "coin_names": coin_day_list_2,
         "month_data": month_data,
+        "month_str": month_str
     }
     return render(request, "coins/month.html", context)
 

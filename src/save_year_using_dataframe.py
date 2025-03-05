@@ -1,37 +1,36 @@
-#!/usr/bin/env python3
-
-import pandas
 import logging.config
 import os
 import sys
 
-import utils.common_functions as cf
+import pandas
+
+import src.utils.common_functions as cf
 
 # GLOBALS
-PROJECT_PATH = cf.getProjetPath()
+PROJECT_PATH = cf.get_project_path()
 logging.config.fileConfig(PROJECT_PATH + "/config/logging.properties")
 LOGGER = logging.getLogger("testLogger")
-LOG_FILE = PROJECT_PATH + "/log/" + cf.getFileLog(sys.argv[0])
-CONFIG = cf.load_config(PROJECT_PATH, LOGGER, LOG_FILE)
+LOG_FILE = PROJECT_PATH + "/log/" + cf.get_file_log(sys.argv[0])
+CONFIG = cf.load_config(PROJECT_PATH, LOG_FILE)
 
 if __name__ == '__main__':
     info = {
-        "name": str(cf.getFiletName(sys.argv[0], True)),
+        "name": str(cf.get_file_name(sys.argv[0], True)),
         "location": sys.argv[0],
         "description": "Create a complete data file of a year in CSV and JSON",
         "Autor": "Alejandro Gómez",
         "calling": sys.argv[0] + " 2023 coinlayer"
     }
-    cf.showScriptInfo(info)
+    cf.show_script_info(info)
 
     # PARAMETERS
     if len(sys.argv) != 3:
-        cf.info_msg(sys.argv[0]+" [YEAR] [SOURCE]", LOG_FILE)
+        cf.info_msg(sys.argv[0] + " [YEAR] [SOURCE]", LOG_FILE)
         cf.error_msg(1, "Erroneous parameter number.", LOG_FILE)
 
     # Constants
     SELECTED_YEAR = str(sys.argv[1])
-    SELECTED_SOURCE = str("_"+sys.argv[2]+".json")
+    SELECTED_SOURCE = str("_" + sys.argv[2] + ".json")
     JSON_DIRECTORY = PROJECT_PATH + "/data/"
     DATA_DIRECTORY = JSON_DIRECTORY + SELECTED_YEAR + "/"
     OUTPUT_DIRECTORY = JSON_DIRECTORY + "dataFrames/"
@@ -49,7 +48,7 @@ if __name__ == '__main__':
         for file1 in LIST_FILES:
             if SELECTED_SOURCE in file1:
                 file_name = DATA_DIRECTORY + file1
-                cf.info_msg("Loading file: "+file1)
+                cf.info_msg("Loading file: " + file1)
                 data = cf.cargar_json(file_name)
                 # For each value in a day
                 for element in data["rates"]:

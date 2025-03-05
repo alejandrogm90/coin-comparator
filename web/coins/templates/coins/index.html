@@ -1,15 +1,12 @@
-{% extends "coins/base.html" %}
-{% load static %}
-{% block content %}
-    <div id="div1">
-        <script src="{% static 'coins/js/prueba2.js' %}"></script>
-        <div id="div_myChart">
-            <canvas id="myChart">Your browser does not support the canvas element.</canvas>
-        </div>
-        <ul>
-        {% for c1 in dates_saved %}
-            <li>{{ c1 }}</li>
-        {% endfor %}
-        </ul>
+{% extends "coins/base.html" %}{% load static %}{% block content %}
+<div id="div1">
+    <script src="{% static 'coins/js/prueba2.js' %}"></script>
+    <div id="div_myChart">
+        <canvas id="myChart">Your browser does not support the canvas element.</canvas>
     </div>
-{% endblock %}
+    <ul>
+        {% for c1 in dates_saved %}
+        <li>{{ c1 }}</li>
+        {% endfor %}
+    </ul>
+</div>{% endblock %}

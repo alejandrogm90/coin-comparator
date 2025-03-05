@@ -6,4 +6,3 @@ class CoinsConfig(AppConfig):
     name = 'coins'
     app_label = 'Coins'
     verbose_name = 'Coins App'
-

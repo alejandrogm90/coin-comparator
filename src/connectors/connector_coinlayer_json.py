@@ -1,42 +1,37 @@
-#!/usr/bin/env python3
-
-import logging.config
 import os.path
 import sys
+
 import requests
 
-import utils.common_functions as cf
+from src.utils.common_functions import error_msg, get_file_log, info_msg, load_config, save_json
 
 # GLOBALS
-PROJECT_PATH = cf.getProjetPath()
-logging.config.fileConfig(PROJECT_PATH + "/config/logging.properties")
-LOGGER = logging.getLogger("testLogger")
-LOG_FILE = PROJECT_PATH + "/log/" + cf.getFileLog(sys.argv[0])
-CONFIG = cf.load_config(PROJECT_PATH, LOG_FILE)
+LOG_FILE = "log/" + get_file_log(sys.argv[0])
+CONFIG = load_config(log_file=LOG_FILE)
 
-def save_day_in_json(SELECTED_DATE):
-    SELECTED_YEAR = SELECTED_DATE.split('-')[0]
-    JSON_PATH = PROJECT_PATH + "/data/" + SELECTED_YEAR + "/" + SELECTED_DATE + "_coinlayer.json"
-    if (not os.path.exists(JSON_PATH)):
-        HOST_URL = CONFIG["HOST_URL"]
-        ACCESS_KEY = CONFIG["ACCESS_KEY"]
-        URL1 = HOST_URL + "/" + SELECTED_DATE + "?access_key=" + ACCESS_KEY
+
+def save_day_in_json(selected_date):
+    selected_year = selected_date.split('-')[0]
+    json_path = "data/" + selected_year + "/" + selected_date + "_coinlayer.json"
+    if not os.path.exists(json_path):
+        host_url = CONFIG["HOST_URL"]
+        access_key = CONFIG["ACCESS_KEY"]
+        url_1 = f'{host_url}/{selected_date}?access_key={access_key}'
 
         payload = {}
         headers = {}
-
-        response = requests.request("GET", URL1, headers=headers, data=payload)
+        response = requests.request("GET", url_1, headers=headers, data=payload)
         data = response.json()
-
-        cf.guardar_json(JSON_PATH, data)
-        cf.info_msg("DATA SAVED IN: {0}".format(JSON_PATH), LOG_FILE)
+        print(data)
+        save_json(json_path, data)
+        info_msg("DATA SAVED IN: {0}".format(json_path), LOG_FILE)
     else:
-        cf.info_msg("FILE ALREADY EXISTS IN: {0}".format(JSON_PATH), LOG_FILE)
+        info_msg("FILE ALREADY EXISTS IN: {0}".format(json_path), LOG_FILE)
 
 
 if __name__ == '__main__':
     # PARAMETERS
     if len(sys.argv) != 2:
-        cf.error_msg(1, "Erroneous parameter number.", LOG_FILE)
+        error_msg(1, "Erroneous parameter number.", LOG_FILE)
 
     save_day_in_json(str(sys.argv[1]))

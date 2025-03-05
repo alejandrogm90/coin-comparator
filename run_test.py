@@ -1,8 +1,8 @@
-#!/usr/bin/env python3
-
-from test.coin_wallet_tests import coin_wallet_tests
-from test.common_functions_tests import common_functions_tests
+from tests.test_coin_wallet import TestCoinWallet
+from tests.test_common_functions import TestCommonFunctions
+from tests.test_wallet import TestWallet
 
 if __name__ == '__main__':
-    common_functions_tests.main()
-    coin_wallet_tests.main()
+    TestCommonFunctions.main()
+    TestCoinWallet.main()
+    TestWallet.main()

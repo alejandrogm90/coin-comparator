@@ -1,5 +1,4 @@
-{% extends "coins/base.html" %}
-{% block content %}
+{% extends "coins/base.html" %}{% block content %}
 <div id="div1">
     <script>
         async function insert_data_json() {
@@ -26,7 +25,7 @@
                     labels: data_json.map(row => row.date_part),
                     datasets: [
                         {
-                          label: 'Acquisitions by day',
+                          label: 'Acquisitions by day of bitcoin',
                           data: data_json.map(row => row.value)
                         }
                     ]
@@ -36,8 +35,8 @@
 
         document.addEventListener("DOMContentLoaded", insert_data_json);
     </script>
+    <h1>{{ month_str }}</h1>
     <div id="div_myChart">
         <canvas id="myChart">Your browser does not support the canvas element.</canvas>
     </div>
-</div>
-{% endblock %}
+</div>{% endblock %}
