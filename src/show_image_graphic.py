@@ -5,49 +5,44 @@ import sys
 import matplotlib.pyplot as plt
 import pandas
 
-import src.utils.common_functions as cf
-from src.utils.connector_sqlittle import ConnectorSQLittle
+from common_utils.connector_sqlittle import ConnectorSQLittle
+from src.common_utils.common_functions import CommonFunctions
 
 # GLOBALS
-PROJECT_PATH = cf.get_project_path()
-LOG_FILE = PROJECT_PATH + '/log/' + cf.get_file_log(sys.argv[0])
-CONFIG = cf.load_config(PROJECT_PATH, LOG_FILE)
+PROJECT_PATH = CommonFunctions.get_project_path()
+LOG_FILE = PROJECT_PATH + '/log/' + CommonFunctions.get_file_log(sys.argv[0])
+CONFIG = CommonFunctions.load_config(PROJECT_PATH, LOG_FILE)
 
 
 # FUNCTIONS
-def exist_coin(conn, sdate, name):
-    sql = " SELECT count(name) FROM coinlayer_historical WHERE name = '" + name + "' AND date_part = '" + sdate + "' ;"
+def exist_coin(conn: ConnectorSQLittle, sdate: str, name: str):
+    sql = f"SELECT count(name) FROM coinlayer_historical WHERE name='{name}' AND date_part='{sdate}' ;"
+
     try:
-        conn.execute(sql)
-        conn.commit()
+        conn_result = conn.execute(sql)
+        if conn_result.fetchone()[0] > 0:
+            return True
     except sqlite3.Error as e:
-        cf.error_msg(3, str(e), LOG_FILE)
-    if conn.fetchone()[0] > 0:
-        return True
-    else:
-        return False
+        CommonFunctions.error_msg(3, str(e), LOG_FILE)
+    return False
 
 
-def create_image(cur, sdate, coinList):
-    sql = " SELECT name,value FROM coinlayer_historical WHERE date_part = '" + sdate + "' AND name IN ("
+def create_image(conn, sdate, coinList):
+    sql = f"SELECT name,value FROM coinlayer_historical WHERE date_part='{sdate}' AND name IN ("
     cont1 = True
     for coin in coinList:
         if cont1:
-            sql += "'" + coin + "'"
+            sql += f"'{coin}'"
             cont1 = False
         else:
-            sql += ",'" + coin + "'"
+            sql += f",'{coin}'"
     sql += ") "
 
-    try:
-        cur.execute(sql)
-        conn.commit()
-    except sqlite3.Error as e:
-        print(e)
+    conn_result = conn.execute(sql)
 
     l1 = list()
     l2 = list()
-    for element in cur:
+    for element in conn_result:
         print(element)
         l1.append(element[0])
         l2.append(element[1])
@@ -64,33 +59,33 @@ def create_image(cur, sdate, coinList):
 
 if __name__ == '__main__':
     info = {
-        "name": str(cf.get_file_name(sys.argv[0], True)),
+        "name": str(CommonFunctions.get_file_name(sys.argv[0], True)),
         "location": sys.argv[0],
         "description": "A simple script to print graphics",
         "Autor": "Alejandro Gómez",
         "calling": sys.argv[0] + " output.png 2023-05-07 BTC ABC USD"
     }
-    cf.show_script_info(info)
+    CommonFunctions.show_script_info(info)
 
     # PARAMETERS
     if len(sys.argv) < 4:
-        cf.error_msg(1, "Erroneous parameter number.Needs [OUTPUT_FILE] [DATE] [COIN_ARRAY]", LOG_FILE)
+        CommonFunctions.error_msg(1, "Erroneous parameter number.Needs [OUTPUT_FILE] [DATE] [COIN_ARRAY]", LOG_FILE)
 
     PNG_OUTPUT_LOCATION = str(sys.argv[1])
     SELECTED_DATE = str(sys.argv[2])
     SQLITLE_PATH = CONFIG["SQLITLE_PATH"]
 
     if not os.path.exists(SQLITLE_PATH):
-        cf.error_msg(2, "Error sqlite3 database do not exists", LOG_FILE)
+        CommonFunctions.error_msg(2, "Error sqlite3 database do not exists", LOG_FILE)
     else:
         connector = ConnectorSQLittle(SQLITLE_PATH)
-        df1 = pandas.read_sql_query(connector.connect)
+        df1 = pandas.read_sql_query(connector)
         coinList = list()
         for elemento in range(3, len(sys.argv)):
             if exist_coin(connector.connect, SELECTED_DATE, sys.argv[elemento]):
                 coinList.append(sys.argv[elemento])
             else:
-                cf.warn_msg("Coin '" + sys.argv[elemento] + "' do not exists")
+                CommonFunctions.warn_msg(f"Coin '{sys.argv[elemento]}' do not exists")
 
-        cf.info_msg(str(coinList))
+        CommonFunctions.info_msg(str(coinList))
         create_image(connector.connect, SELECTED_DATE, coinList)

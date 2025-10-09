@@ -8,6 +8,8 @@ coverage = "*"
 django = "*"
 python-dateutil = "*"
 requests = "*"
+pandas = "*"
+matplotlib = "*"
 
 [dev-packages]
 

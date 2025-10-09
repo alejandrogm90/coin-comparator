@@ -1,13 +1,14 @@
 import json
 import unittest
 
-from src.utils.coin_wallet import ActionType, CoinWallet
-from src.utils.common_functions import get_project_path
+from src.common_utils.common_functions import CommonFunctions
+from src.objects.action import ActionType
+from src.objects.coin_wallet import CoinWallet
 
 
 class TestCoinWallet(unittest.TestCase):
     def setUp(self):
-        self.project_path = get_project_path()
+        self.project_path = CommonFunctions.get_project_path()
         f1 = open(f"{self.project_path}/config/config_agent_example.json")
         self.CONFIG_AGENT = json.load(f1)
         f1.close()
