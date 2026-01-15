@@ -1,48 +1,49 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-<head>
-    <base href="http://127.0.0.1:8000/coins">
-    <meta charset="UTF-8">
-    <meta content="IE=edge" http-equiv="X-UA-Compatible">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Coin Comparator</title>
-    <link href="{% static 'coins/css/style1.css' %}" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="{% static 'coins/js/basic.js' %}"></script>
-    <link href="{% static 'coins/img/favicon.png' %}" rel="icon" type="image/x-icon">
-</head>
-<body>
-<section id="header">
-                <span class='logo'>
-                    <img alt="Logotipo" class='logo' src="{% static 'coins/img/logo.png' %}"/>
-                </span>
-</section>
-<div class='grid'>
-    <section id='sidebar'>
-        <button class="accordion">Dates saved</button>
-        <div class="panel">
-            {% for dt1 in dates_saved %}
-            <p><a href="/month/{{ dt1 }}">{{ dt1 }}</a></p>
-            {% endfor %}
-        </div>
-        <button class="accordion">Coins</button>
-        <div class="panel">
-            {% for c1 in coin_names %}
-            <p><a href="#{{ c1.name }}">{{ c1.name }}</a></p>
-            {% endfor %}
-        </div>
-        <button class="accordion">Section 3</button>
-        <div class="panel">
-            <p><a href="#">Link 1</a></p>
-            <p><a href="#">Link 2</a></p>
-            <p><a href="#">Link 3</a></p>
-        </div>
+    <head>
+        <base href="http://127.0.0.1:8000/coins">
+        <meta charset="UTF-8">
+        <meta content="IE=edge" http-equiv="X-UA-Compatible">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <title>Coin Comparator</title>
+        <link href="{% static 'coins/css/style1.css' %}" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="{% static 'coins/js/basic.js' %}"></script>
+        <link href="{% static 'coins/img/favicon.png' %}" rel="icon" type="image/x-icon">
+    </head>
+    <body>
+        <section id="header">
+            <span class='logo'>
+                <img alt="Logotipo" class='logo' src="{% static 'coins/img/logo.png' %}"/>
+            </span>
+        </section>
+        <div class='grid'>
+            <section id='sidebar'>
+                <button class="accordion">Dates saved</button>
+                <div class="panel">
+                    {% for dt1 in dates_saved %}
+                    <p><a href="/month/{{ dt1 }}">{{ dt1 }}</a></p>
+                    {% endfor %}
+                </div>
+                <button class="accordion">Coins</button>
+                <div class="panel">
+                    {% for c1 in coin_names %}
+                    <p><a href="#{{ c1.name }}">{{ c1.name }}</a></p>
+                    {% endfor %}
+                </div>
+                <button class="accordion">Section 3</button>
+                <div class="panel">
+                    <p><a href="#">Link 1</a></p>
+                    <p><a href="#">Link 2</a></p>
+                    <p><a href="#">Link 3</a></p>
+                </div>
 
-    </section>
-    <section id="content">
-        {% block content %} {% endblock %}
-    </section>
-</div>
-</body>
+            </section>
+            <section id="content">
+                {% block content %}
+                {% endblock %}
+            </section>
+        </div>
+    </body>
 </html>

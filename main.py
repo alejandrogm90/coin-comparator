@@ -5,7 +5,7 @@ from shutil import copyfile
 
 from dateutil.relativedelta import relativedelta
 
-from src.common_utils.common_functions import CommonFunctions
+from src.agents.common_utils import CommonFunctions
 
 # GLOBALS
 PROJECT_PATH = CommonFunctions.get_project_path()
@@ -53,16 +53,17 @@ if __name__ == '__main__':
         "name": str(CommonFunctions.get_file_name(sys.argv[0], True)),
         "location": sys.argv[0],
         "description": "Main script for create all environment",
-        "Autor": "Alejandro Gómez",
-        "calling": sys.argv[0]
+        "Author": "Alejandro Gómez",
+        "calling": [f"{sys.argv[0]} YEAR MONTH [json, sqlittle]"]
     }
     CommonFunctions.show_script_info(info)
 
+    year: int = 0
+    month: int = 0
+
     if len(sys.argv) != 3 and len(sys.argv) != 4:
-        CommonFunctions.error_msg(1, "YEAR MONTH [json, sqlittle]")
+        CommonFunctions.error_msg_parameters(info)
     else:
-        year: int = 0
-        month: int = 0
         try:
             year = int(sys.argv[1])
             if year < 1:

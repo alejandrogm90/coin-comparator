@@ -5,8 +5,8 @@ import sys
 import matplotlib.pyplot as plt
 import pandas
 
-from common_utils.connector_sqlittle import ConnectorSQLittle
-from src.common_utils.common_functions import CommonFunctions
+from src.agents.data_connectors.connector_sqlittle import ConnectorSQLittle
+from src.agents.common_utils import CommonFunctions
 
 # GLOBALS
 PROJECT_PATH = CommonFunctions.get_project_path()
@@ -62,8 +62,8 @@ if __name__ == '__main__':
         "name": str(CommonFunctions.get_file_name(sys.argv[0], True)),
         "location": sys.argv[0],
         "description": "A simple script to print graphics",
-        "Autor": "Alejandro Gómez",
-        "calling": sys.argv[0] + " output.png 2023-05-07 BTC ABC USD"
+        "Author": "Alejandro Gómez",
+        "parameters": [f'{sys.argv[0]}  output.png 2023-05-07 BTC ABC USD']
     }
     CommonFunctions.show_script_info(info)
 
@@ -73,12 +73,12 @@ if __name__ == '__main__':
 
     PNG_OUTPUT_LOCATION = str(sys.argv[1])
     SELECTED_DATE = str(sys.argv[2])
-    SQLITLE_PATH = CONFIG["SQLITLE_PATH"]
+    SQL_PATH = CONFIG["SQL_PATH"]
 
-    if not os.path.exists(SQLITLE_PATH):
+    if not os.path.exists(SQL_PATH):
         CommonFunctions.error_msg(2, "Error sqlite3 database do not exists", LOG_FILE)
     else:
-        connector = ConnectorSQLittle(SQLITLE_PATH)
+        connector = ConnectorSQLittle(SQL_PATH)
         df1 = pandas.read_sql_query(connector)
         coinList = list()
         for elemento in range(3, len(sys.argv)):

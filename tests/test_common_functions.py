@@ -1,9 +1,14 @@
+import sys
 import unittest
 
-from src.common_utils.common_functions import CommonFunctions
+from src.agents.common_utils.common_functions import CommonFunctions
 
 
 class TestCommonFunctions(unittest.TestCase):
+    @classmethod
+    def main(cls):
+        unittest.main(verbosity=2)
+
     def setUp(self):
         self.project_path = CommonFunctions.get_project_path()
 
@@ -21,9 +26,18 @@ class TestCommonFunctions(unittest.TestCase):
         self.assertEqual(False, CommonFunctions.is_valid_date("2022-01-32"))
         self.assertEqual(False, CommonFunctions.is_valid_date("2022-00-01"))
 
-    @classmethod
-    def main(cls):
-        unittest.main(verbosity=2)
+    def test_ddd(self):
+        print("")
+        info = {
+            "name": str(CommonFunctions.get_file_name(sys.argv[0], True)),
+            "location": sys.argv[0],
+            "description": "Description test",
+            "author": "test maker",
+            "parameters": ["Example parameters 1", f"Example parameters 2", "Example parameters 3"]
+        }
+        assert CommonFunctions.show_script_info(info) is None
+        assert CommonFunctions.show_script_info({"location": sys.argv[0]}) is None
+        assert CommonFunctions.show_script_info() is None
 
 
 if __name__ == '__main__':

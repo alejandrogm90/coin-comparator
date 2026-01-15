@@ -2,4 +2,4 @@
 version = "1.0.0"
 
 # Print a welcome message
-print(f"Welcome to coin-comparator version {version}")
+# print(f"Welcome to coin-comparator version {version}")

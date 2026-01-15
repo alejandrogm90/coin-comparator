@@ -28,8 +28,8 @@ else
         showError 3 "Is not a valid date YYYY-MM-DD"
     else
         for day in $(getAllDatesOfOneMonth "$2" "$3"); do
-            echo "pipenv run python $1 $day"
-            # pipenv run python "$1" "$day"
+            # echo "pipenv run python $1 $day"
+            pipenv run python "$1" "$day"
             respuesta=$?
             if [ $respuesta -ne 0 ]; then
                 showWarn "ERROR in $1 $day"

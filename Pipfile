@@ -10,6 +10,8 @@ python-dateutil = "*"
 requests = "*"
 pandas = "*"
 matplotlib = "*"
+openpyxl = "*"
+pyarrow = "*"
 
 [dev-packages]
 

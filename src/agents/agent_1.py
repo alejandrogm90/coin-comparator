@@ -2,9 +2,9 @@
 import logging.config
 import sys
 
-from src.common_utils.common_functions import CommonFunctions
-from src.common_utils.connector_sqlittle import ConnectorSQLittle
-from src.objects.coin_wallet import CoinWallet
+from src.agents.common_utils import CommonFunctions
+from src.agents.data_connectors.connector_sqlittle import ConnectorSQLittle
+from src.agents.objects.coin_movement import CoinMovement
 
 # GLOBALS
 PROJECT_PATH = CommonFunctions.get_project_path()
@@ -23,14 +23,14 @@ if __name__ == '__main__':
     else:
         CONFIG_AGENT = CommonFunctions.load_json(sys.argv[1])
         sentence = MY_QUERY.format(sys.argv[2], sys.argv[3])
-        rows = ConnectorSQLittle.get_values(PROJECT_PATH + "/" + CONFIG["SQLITLE_PATH"], sentence)
+        rows = ConnectorSQLittle.get_values(PROJECT_PATH + "/" + CONFIG["SQL_PATH"], sentence)
         currentPrice = rows[0][1]
-        myBank = CoinWallet(CONFIG_AGENT, sys.argv[2], sys.argv[3], float(sys.argv[4]), float(sys.argv[5]),
+        myBank = CoinMovement(CONFIG_AGENT, sys.argv[2], sys.argv[3], float(sys.argv[4]), float(sys.argv[5]),
                             currentPrice)
 
-        if myBank.get_cash() > currentPrice and CoinWallet.is_decreasing(rows):
+        if myBank.get_cash() > currentPrice and CoinMovement.is_decreasing(rows):
             myBank.buy_all_coins()
-        elif myBank.get_coins() > 0 and CoinWallet.is_increasing(rows):
+        elif myBank.get_coins() > 0 and CoinMovement.is_increasing(rows):
             myBank.sell_all_coins()
 
         print(myBank)

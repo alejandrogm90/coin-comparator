@@ -2,7 +2,7 @@ import glob
 import sys
 import pandas
 
-from src.common_utils.common_functions import CommonFunctions
+from src.agents.common_utils import CommonFunctions
 
 # GLOBALS
 LOG_FILE = "log/" + CommonFunctions.get_file_log(sys.argv[0])

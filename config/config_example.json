@@ -2,5 +2,6 @@
   "HOST_URL": "",
   "ACCESS_KEY": "",
   "URL_MONGODB": "",
-  "SQLITLE_PATH": ""
+  "SQL_PATH": "",
+  "PARQUET_PATH": "/data/dataFrames"
 }

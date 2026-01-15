@@ -1,8 +1,8 @@
 import os
 import sys
 
-from src.common_utils.common_functions import CommonFunctions
-from src.common_utils.connector_sqlittle import ConnectorSQLittle
+from src.agents.common_utils import CommonFunctions
+from src.agents.data_connectors.connector_sqlittle import ConnectorSQLittle
 
 # GLOBALS
 LOG_FILE = "log/" + CommonFunctions.get_file_log(sys.argv[0])
@@ -18,7 +18,7 @@ if __name__ == '__main__':
     json_path = f"data/json/{selected_year}/{selected_date}_coinlayer.json"
     # Cargar datos desde los ficheros JSON previamente generados
     if os.path.exists(json_path):
-        con1 = ConnectorSQLittle(CONFIG["SQLITLE_PATH"])
+        con1 = ConnectorSQLittle(CONFIG["SQL_PATH"])
         data = CommonFunctions.load_json(json_path)
         first_part = "INSERT INTO coins_coin_day (id, date_part, name, value)"
         for element in data["rates"]:

@@ -93,12 +93,26 @@ Changing our data:
 $ ./src/launch_month.sh connector_coinlayer_json_load_sqlittle.py 2022 1
 # To launch a specific year and save it in XLSX, CSV, JSON and PARQET
 $ ./src/save_year_using_dataframe.py 2022 coinlayer
+# To load a complete year in parquet format
+$ pipenv run python src/save_year_using_dataframe.py 2022
 ```
 
 To run web server is required to use this sentence:
 
 ```shell
 $ ./web/manage.py runserver
+```
+
+To run agents:
+
+```shell
+$ pipenv run python run_test.py
+```
+
+To run tests:
+
+```shell
+$ pipenv run python run_test.py
 ```
 
 _For more examples, please refer to the [Documentation][project-url]_

@@ -2,7 +2,7 @@ import os.path
 import sys
 import requests
 
-from src.common_utils.common_functions import CommonFunctions
+from src.agents.common_utils import CommonFunctions
 
 # Example: pipenv run python src/connector_coinlayer_json.py "2024-01-31"
 

@@ -1,4 +1,6 @@
-{% extends "coins/base.html" %}{% load static %}{% block content %}
+{% extends "coins/base.html" %}
+{% load static %}
+{% block content %}
 <div id="div1">
     <script src="{% static 'coins/js/prueba2.js' %}"></script>
     <div id="div_myChart">
@@ -9,4 +11,5 @@
         <li>{{ c1 }}</li>
         {% endfor %}
     </ul>
-</div>{% endblock %}
+</div>
+{% endblock %}

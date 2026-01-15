@@ -12,7 +12,7 @@ export script_info=(
     [name]="${SCRIPT_NAME}"
     [location]="${DIR_HOME}"
     [description]="A simple monthly script to get al data of one month"
-    [calling]="./$(getScriptName "$0")"
+    [calling]="$@"
 )
 
 # Show main script info

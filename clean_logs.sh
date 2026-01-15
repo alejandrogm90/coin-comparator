@@ -10,13 +10,14 @@ export script_info=(
     [name]="${SCRIPT_NAME}"
     [location]="${DIR_HOME}"
     [description]="A simple cleaner for directory log"
-    [calling]="./$(getScriptName "$0")"
+    [calling]="$@"
 )
 
 # Show main script info
 show_script_info
 
 # MAIN
-if [ "0" != "$(ls -l "$DIR_LOG/"*.log | head -1 | cut -d' ' -f2)" ]; then
-    rm "$DIR_LOG/"*.log
-fi
+#if [ "0" != "$(ls -l "$DIR_LOG/"*.log | head -1 | cut -d' ' -f2)" ]; then
+#    rm "$DIR_LOG/"*.log
+#fi
+rm "$DIR_LOG/"*.log

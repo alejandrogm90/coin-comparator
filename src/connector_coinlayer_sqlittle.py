@@ -3,8 +3,8 @@ import sys
 
 import requests
 
-from common_utils.connector_sqlittle import ConnectorSQLittle
-from src.common_utils.common_functions import CommonFunctions
+from src.agents.data_connectors.connector_sqlittle import ConnectorSQLittle
+from src.agents.common_utils import CommonFunctions
 
 # GLOBALS
 PROJECT_PATH = CommonFunctions.get_project_path()
@@ -33,7 +33,7 @@ if __name__ == '__main__':
 
     # Cargar datos desde los ficheros JSON previamente generados
     if os.path.exists(JSON_PATH):
-        con1 = ConnectorSQLittle(CONFIG["SQLITLE_PATH"])
+        con1 = ConnectorSQLittle(CONFIG["SQL_PATH"])
         data = CommonFunctions.load_json(JSON_PATH)
         first_part = " INSERT INTO coins_coin_day (id, date_part,name,value) "
         for element in data["rates"]:

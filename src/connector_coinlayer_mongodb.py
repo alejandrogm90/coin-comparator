@@ -4,7 +4,7 @@ import sys
 import pymongo
 import requests
 
-from src.common_utils.common_functions import CommonFunctions
+from src.agents.common_utils import CommonFunctions
 
 # GLOBALS
 PROJECT_PATH = CommonFunctions.get_project_path()
