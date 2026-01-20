@@ -2,9 +2,9 @@ import os.path
 import sys
 import requests
 
-from src.agents.common_utils import CommonFunctions
+from src.agents.common_utils.common_functions import CommonFunctions
 
-# Example: pipenv run python src/connector_coinlayer_json.py "2024-01-31"
+# Example: pipenv run python src/connector/coinlayer_json.py "2024-01-31"
 
 # GLOBALS
 LOG_FILE = "log/" + CommonFunctions.get_file_log(sys.argv[0])

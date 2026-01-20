@@ -27,24 +27,24 @@ def replace_basic_file(default_file: str, expected_file: str):
 def save_in_json(list_str_dates: list):
     CommonFunctions.info_msg("Saving current month in json ....", LOG_FILE)
     for day in list_str_dates:
-        # subprocess.call("{0}/src/connector_coinlayer_json.py {1}".format(PROJECT_PATH, day), shell=True)
-        CommonFunctions.debug_msg("{0}/src/connector_coinlayer_json.py {1}".format(PROJECT_PATH, day))
+        # subprocess.call("{0}/src/connector/coinlayer_json.py {1}".format(PROJECT_PATH, day), shell=True)
+        CommonFunctions.debug_msg("{0}/src/connector/coinlayer_json.py {1}".format(PROJECT_PATH, day))
     CommonFunctions.info_msg("Current processed ....", LOG_FILE)
 
 
 def save_in_sqlittle(list_str_dates: list):
     CommonFunctions.info_msg("Saving current month in sqlittle ....", LOG_FILE)
     for day in list_str_dates:
-        # subprocess.call("{0}/src/connector_coinlayer_sqlittle.py {1}".format(PROJECT_PATH, day), shell=True)
-        CommonFunctions.debug_msg("{0}/src/connector_coinlayer_sqlittle.py {1}".format(PROJECT_PATH, day))
+        # subprocess.call("{0}/src/connector/coinlayer_sqlittle.py {1}".format(PROJECT_PATH, day), shell=True)
+        CommonFunctions.debug_msg("{0}/src/connector/coinlayer_sqlittle.py {1}".format(PROJECT_PATH, day))
     CommonFunctions.info_msg("Current processed ....", LOG_FILE)
 
 
 def save_in_mongodb(list_str_dates: list):
     CommonFunctions.info_msg("Saving current month in mongodb ....", LOG_FILE)
     for day in list_str_dates:
-        # subprocess.call("{0}/src/connector_coinlayer_mongodb.py {1}".format(PROJECT_PATH, day), shell=True)
-        CommonFunctions.debug_msg("{0}/src/connector_coinlayer_mongodb.py {1}".format(PROJECT_PATH, day))
+        # subprocess.call("{0}/src/connector/coinlayer_mongodb.py {1}".format(PROJECT_PATH, day), shell=True)
+        CommonFunctions.debug_msg("{0}/src/connector/coinlayer_mongodb.py {1}".format(PROJECT_PATH, day))
     CommonFunctions.info_msg("Current processed ....", LOG_FILE)
 
 

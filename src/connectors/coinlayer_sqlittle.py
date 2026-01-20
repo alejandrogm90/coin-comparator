@@ -3,8 +3,8 @@ import sys
 
 import requests
 
+from src.agents.common_utils.common_functions import CommonFunctions
 from src.agents.data_connectors.connector_sqlittle import ConnectorSQLittle
-from src.agents.common_utils import CommonFunctions
 
 # GLOBALS
 PROJECT_PATH = CommonFunctions.get_project_path()

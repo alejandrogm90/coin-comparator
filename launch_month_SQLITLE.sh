@@ -5,7 +5,7 @@ DIR_HOME=$(cd $(dirname $0) && pwd)
 source "$DIR_HOME/src/common_utils/common_functions.sh"
 DIR_LOG="$(dirname $DIR_HOME)/log"
 SCRIPT_NAME="$(getJustStriptName $0)"
-CONNECTOR="src/connectors/connector_coinlayer_sqlittle.py"
+CONNECTOR="src/connectors/coinlayer_sqlittle.py"
 # export LOG_FILE="${DIR_LOG}/${SCRIPT_NAME}_$(date +%F).log"
 declare -A script_info
 export script_info=(

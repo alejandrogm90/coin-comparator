@@ -1,7 +1,7 @@
 #!/bin/bash
 # Example: ./launch_bot.sh src/agents/bot_1.py ABC 100 100
 # config: dict, date: str, coin_name: str, cash: float, coins: float):
-# pipenv run python src/connector_coinlayer_json.py config/config_agent.json 2024-01-01 ABC 100 100
+# pipenv run python src/connector/coinlayer_json.py config/config_agent.json 2024-01-01 ABC 100 100
 
 
 # VARIABLES AND FUNCTIONS

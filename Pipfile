@@ -13,6 +13,7 @@ matplotlib = "*"
 openpyxl = "*"
 pyarrow = "*"
 pandas-stubs = "*"
+pymongo = "*"
 
 [dev-packages]
 

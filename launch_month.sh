@@ -1,5 +1,5 @@
 #!/bin/bash
-# Example: ./launch_month.sh src/connector_coinlayer_json.py 2024 01
+# Example: ./launch_month.sh src/connector/coinlayer_json.py 2024 01
 
 # VARIABLES AND FUNCTIONS
 DIR_HOME=$(cd "$(dirname "$0")" && pwd)

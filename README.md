@@ -76,13 +76,13 @@ How to get data from web:
 ```shell
 # If we are using coinlayer
 # To launch a specific month and download data saving it in json
-$ ./src/launch_month.sh connector_coinlayer_json.py 2022 1
+$ ./src/launch_month.sh src/connectors/coinlayer_json.py 2022 1
 # To launch a specific month and download data saving it in sqlitle
-$ ./src/launch_month.sh connector_coinlayer_sqlittle.py 2022 1
+$ ./src/launch_month.sh src/connectors/coinlayer_sqlittle.py 2022 1
 # To launch a specific month and download data saving it in mongodb
-$ ./src/launch_month.sh connector_coinlayer_mongodb.py 2022 1
+$ ./src/launch_month.sh src/connectors/coinlayer_mongodb.py 2022 1
 # To launch a specific month and loading from our data and saving in sqlitle
-$ ./src/launch_month.sh connector_coinlayer_json_load_sqlittle.py 2022 1
+$ ./src/launch_month.sh src/connectors/coinlayer_json_load_sqlittle.py 2022 1
 ```
 
 Changing our data:
@@ -90,7 +90,7 @@ Changing our data:
 ```shell
 # If we are using coinlayer
 # To launch a specific month and loading from our data and saving in sqlitle
-$ ./src/launch_month.sh connector_coinlayer_json_load_sqlittle.py 2022 1
+$ ./src/launch_month.sh src/connectors/coinlayer_json_load_sqlittle.py 2022 1
 # To launch a specific year and save it in XLSX, CSV, JSON and PARQET
 $ ./src/save_year_using_dataframe.py 2022 coinlayer
 # To load a complete year in parquet format
