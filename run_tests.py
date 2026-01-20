@@ -1,3 +1,4 @@
+from tests.test_bots import TestBot1
 from tests.test_coin_movement import TestCoinMovement
 from tests.test_common_functions import TestCommonFunctions
 from tests.test_connector_pandas import TestConnectorPandas
@@ -8,3 +9,4 @@ if __name__ == '__main__':
     TestCoinMovement.main()
     TestWallet.main()
     TestConnectorPandas.main()
+    TestBot1.main()

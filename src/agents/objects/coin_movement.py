@@ -1,4 +1,4 @@
-from .action import ActionType
+from src.agents.objects.action import ActionType
 
 
 class CoinMovement:

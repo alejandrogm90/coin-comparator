@@ -28,10 +28,10 @@ if [ $# -ne 4 ]; then
 else
     COINS=$3
     CASH=$4
-    # for c_date in $(getAllDatesOfOneMonth 2024 1); do
+    #for c_date in $(getAllDatesOfOneMonth 2024 1); do
         #reaction=$(pipenv run python "$1" "$DEFAULT_CONFIG_FILE" "$c_date" "$2" "$CASH" "$COINS")
     for c_date in "2022-01-01" "2022-01-02" "2022-01-03" ; do
-        reaction=$(python "$1" "$DEFAULT_CONFIG_FILE" "$c_date" "$2" "$CASH" "$COINS")
+        reaction=$(python bot_master.py "$1" "$DEFAULT_CONFIG_FILE" "$c_date" "$2" "$CASH" "$COINS")
         echo "REACTION -> $reaction"
         CASH=$(echo "$reaction" | cut -d'|' -f3)
         COINS=$(echo "$reaction" | cut -d'|' -f4)

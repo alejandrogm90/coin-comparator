@@ -12,6 +12,7 @@ pandas = "*"
 matplotlib = "*"
 openpyxl = "*"
 pyarrow = "*"
+pandas-stubs = "*"
 
 [dev-packages]
 

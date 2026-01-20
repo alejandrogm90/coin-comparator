@@ -1,7 +1,7 @@
 import os
 import sys
 
-from src.agents.common_utils import CommonFunctions
+from src.agents.common_utils.common_functions import CommonFunctions
 from src.agents.data_connectors.connector_sqlittle import ConnectorSQLittle
 
 # GLOBALS
