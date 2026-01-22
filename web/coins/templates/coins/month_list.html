@@ -1,6 +1,7 @@
 {% extends "coins/base.html" %}
 {% block content %}
 <div id="div1">
+    <!--
     <script>
         async function insert_data_json() {
             const data_json = {{ month_data | safe }} ;
@@ -30,10 +31,11 @@
 
         document.addEventListener("DOMContentLoaded", insert_data_json);
     </script>
+    -->
     <div id="coin-selector-box">
         <h1>Coins</h1>
         {% for cl1 in coin_list %}
-        <label><input id="{{ cl1 }}" type="checkbox" value="{{ cl1 }}"> {{ cl1 }}</label>
+        <label><input id="{{ cl1 }}" type="checkbox" value="{{ cl1 }}">{{ cl1 }}</label>
         <!--
             <label class="container">{{ cl1 | safe }}
               <input type="checkbox">

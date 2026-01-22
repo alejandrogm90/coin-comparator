@@ -118,7 +118,7 @@ def get_json_month_old(request, date_part):
     return JsonResponse(data2, safe=False)
 
 
-def getSavedDates(request):
+def get_saved_dates(request):
     # tmp_list = json.load(request)
     lista_fechas = []
     for fecha in request:
@@ -129,7 +129,7 @@ def getSavedDates(request):
 def index(request):
     coin_day_list_2 = coin_day.objects.filter(date_part="2022-01-01").values("name")
     coin_day_list_1 = coin_day.objects.filter(date_part__iendswith="-01").values("date_part").distinct()
-    coin_day_list_1 = getSavedDates(coin_day_list_1)
+    coin_day_list_1 = get_saved_dates(coin_day_list_1)
     context = {
         "dates_saved": coin_day_list_1,
         "coin_names": coin_day_list_2,
@@ -140,7 +140,7 @@ def index(request):
 def month(request, date_part):
     coin_day_list_2 = coin_day.objects.filter(date_part="2022-01-01").values("name")
     coin_day_list_1 = coin_day.objects.filter(date_part__iendswith="-01").values("date_part").distinct()
-    coin_day_list_1 = getSavedDates(coin_day_list_1)
+    coin_day_list_1 = get_saved_dates(coin_day_list_1)
     month_data = get_all_month(date_part)
     month_str = date_part[0:7]
     context = {
@@ -155,7 +155,7 @@ def month(request, date_part):
 def month_list(request, date_part):
     coin_day_list_2 = coin_day.objects.filter(date_part="2022-01-01").values("name")
     coin_day_list_1 = coin_day.objects.filter(date_part__iendswith="-01").values("date_part").distinct()
-    coin_day_list_1 = getSavedDates(coin_day_list_1)
+    coin_day_list_1 = get_saved_dates(coin_day_list_1)
     month_data = get_value_list_month(date_part)
     coin_list = get_coin_list_month(date_part)
     context = {
